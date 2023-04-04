@@ -402,7 +402,7 @@
                         selectedShape.Size = new Size(diameter, diameter);
                     }
                     else
-                        selectedShape.Size = new Size(e.Location.X - selectedShape.Location.X, e.Location.Y - selectedShape.Location.Y);
+                        selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
                     pnMain.Refresh();
                 }
             }
@@ -467,10 +467,9 @@
         }
         public override bool Contains(Point point)
         {
-            int r = Size.Width / 2;
-            int dx = point.X - (Location.X + r);
-            int dy = point.Y - (Location.Y + r);
-            return dx * dx + dy * dy < r * r;
+            if (point.X >= Location.X && point.X <= Location.X + Size.Width && point.Y >= Location.Y && point.Y <= Location.Y + Size.Height)
+                return true;
+            return false;
         }
     };
     public class clsFilledRect : clsDrawObject
@@ -481,10 +480,9 @@
         }
         public override bool Contains(Point point)
         {
-            int r = Size.Width / 2;
-            int dx = point.X - (Location.X + r);
-            int dy = point.Y - (Location.Y + r);
-            return dx * dx + dy * dy < r * r;
+            if (point.X >= Location.X && point.X <= Location.X + Size.Width && point.Y >= Location.Y && point.Y <= Location.Y + Size.Height)
+                return true;
+            return false;
         }
     };
     public class clsCircle : clsDrawObject

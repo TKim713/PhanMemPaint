@@ -238,6 +238,7 @@
             btnRect.UseVisualStyleBackColor = false;
             btnRect.MouseLeave += btnRect_MouseLeave;
             btnRect.MouseHover += btnRect_MouseHover;
+            btnRect.Click += btnRect_Click;
             // 
             // panel2
             // 
