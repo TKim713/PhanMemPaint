@@ -12,6 +12,7 @@
         bool bEllipse = false;
         bool bFilledEllipse = false;
         bool bRect = false;
+        bool bFilledRect = false;
         bool bCircle = false;
         bool bFilledCircle = false;
 
@@ -59,11 +60,13 @@
 
             this.bFilledEllipse = false;
             this.bRect = false;
+            this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
 
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
         }
@@ -74,26 +77,47 @@
 
             this.bEllipse = false;
             this.bRect = false;
+            this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
 
             btnEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
         }
         private void btnRect_Click(object sender, EventArgs e)
         {
             this.bRect = true;
-            btnEllipse.BackColor = Color.LightCoral;
+            btnRect.BackColor = Color.LightCoral;
 
             this.bEllipse = false;
             this.bFilledEllipse = false;
+            this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+        }
+        private void btnFilledRect_Click(object sender, EventArgs e)
+        {
+            this.bFilledRect = true;
+            btnFilledRect.BackColor = Color.LightCoral;
+
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
         }
@@ -105,11 +129,13 @@
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bRect = false;
+            this.bFilledRect = false;
             this.bFilledCircle = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
         }
         private void btnFilledCircle_Click(object sender, EventArgs e)
@@ -120,11 +146,13 @@
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bRect = false;
+            this.bFilledRect = false;
             this.bCircle = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
         }
         private void btnNull_MouseHover(object sender, EventArgs e)
@@ -323,6 +351,8 @@
                     selectedShape = new clsFilledEllipse { myBrush = myBrush, Location = e.Location, Size = new Size(0, 0) };
                 if (bRect == true)
                     selectedShape = new clsRect { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
+                if (bFilledRect == true)
+                    selectedShape = new clsFilledRect { myBrush = myBrush, Location = e.Location, Size = new Size(0, 0) };
                 if (bCircle == true)
                     selectedShape = new clsCircle { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
                 if (bFilledCircle == true)
@@ -434,6 +464,20 @@
         public override void Draw(Graphics myGp)
         {
             myGp.DrawRectangle(myPen, new Rectangle(Location, Size));
+        }
+        public override bool Contains(Point point)
+        {
+            int r = Size.Width / 2;
+            int dx = point.X - (Location.X + r);
+            int dy = point.Y - (Location.Y + r);
+            return dx * dx + dy * dy < r * r;
+        }
+    };
+    public class clsFilledRect : clsDrawObject
+    {
+        public override void Draw(Graphics myGp)
+        {
+            myGp.FillRectangle(myBrush, new Rectangle(Location, Size));
         }
         public override bool Contains(Point point)
         {
