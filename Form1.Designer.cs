@@ -208,6 +208,7 @@
             btnFilledRect.UseVisualStyleBackColor = false;
             btnFilledRect.MouseLeave += btnFilledRect_MouseLeave;
             btnFilledRect.MouseHover += btnFilledRect_MouseHover;
+            btnFilledRect.Click += btnFilledRect_Click;
             // 
             // btnNull
             // 
