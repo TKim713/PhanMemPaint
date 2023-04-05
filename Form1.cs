@@ -405,17 +405,8 @@
                         diameter = Math.Min(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
                         selectedShape.Size = new Size(diameter, diameter);
                     }
-                    else if (bArc == true)
-                    {
-                        float startAngle = (float)((Math.Atan2(e.Location.Y - lastPoint.Y, e.Location.X - lastPoint.X) / Math.PI) * 180);
-                        float sweepAngle = startAngle;
-
-                        selectedShape.Size = new Size(Math.Abs(dx), Math.Abs(dy));
-                        selectedShape.StartAngle = startAngle;
-                        selectedShape.SweepAngle = sweepAngle;
-                    }
                     else selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
-                    pnMain.Refresh();
+                    pbMain.Refresh();
                 }
             }
         }

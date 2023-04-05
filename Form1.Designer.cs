@@ -164,6 +164,7 @@
             btnArc.UseVisualStyleBackColor = true;
             btnArc.MouseLeave += btnArc_MouseLeave;
             btnArc.MouseHover += btnArc_MouseHover;
+            //btnArc.Click += btnArc_Click;
             // 
             // btnFilledCircle
             // 
