@@ -7,6 +7,7 @@
         Color myColor;
         SolidBrush myBrush;
         Pen myPen;
+        Bitmap bm;
 
         private bool isCtrlKeyPressed = false;
         bool bEllipse = false;
@@ -32,7 +33,10 @@
         public Form1()
         {
             InitializeComponent();
-            gp = this.pnMain.CreateGraphics();
+            bm = new Bitmap(pbMain.Width, pbMain.Height);
+            gp = Graphics.FromImage(bm);
+            gp.Clear(Color.White);
+            //pbMain.Image(bm);
             //gp.SmoothingMode = SmoothingMode.AntiAlias;
             //myPen.StartCap = LineCap.Round;
             //myPen.EndCap = LineCap.Round;
@@ -254,11 +258,11 @@
         {
             btnFilledPolygon.FlatAppearance.BorderColor = Color.White;
         }
-        private void pnMain_MouseHover(object sender, EventArgs e)
+        private void pbMain_MouseHover(object sender, EventArgs e)
         {
-            pnMain.Cursor = Cursors.Cross;
+            pbMain.Cursor = Cursors.Cross;
         }
-        private void pnMain_Paint(object sender, PaintEventArgs e)
+        private void pbMain_Paint(object sender, PaintEventArgs e)
         {
             foreach (var shape in lstObject)
             {
@@ -283,7 +287,7 @@
                 }
             }
         }
-        private void pnMain_MouseDown(object sender, MouseEventArgs e)
+        private void pbMain_MouseDown(object sender, MouseEventArgs e)
         {
             foreach (var shape in lstObject)
             {
@@ -306,7 +310,7 @@
                     selectedShapeHeight = shape.Size.Height;
                     resizeHandleStartPoint = new Point(shape.Location.X, shape.Location.Y);
 
-                    pnMain.Cursor = Cursors.SizeNWSE;
+                    pbMain.Cursor = Cursors.SizeNWSE;
                     break;
                 }
                 //Top right corner
@@ -317,7 +321,7 @@
                     selectedShapeHeight = shape.Size.Height;
                     resizeHandleStartPoint = new Point(shape.Location.X + shape.Size.Width, shape.Location.Y);
 
-                    pnMain.Cursor = Cursors.SizeNESW;
+                    pbMain.Cursor = Cursors.SizeNESW;
                     break;
                 }
                 //Bottom left corner
@@ -328,7 +332,7 @@
                     selectedShapeHeight = shape.Size.Height;
                     resizeHandleStartPoint = new Point(shape.Location.X, shape.Location.Y + shape.Size.Height);
 
-                    pnMain.Cursor = Cursors.SizeNESW;
+                    pbMain.Cursor = Cursors.SizeNESW;
                     break;
                 }
                 //Bottom right corner
@@ -339,7 +343,7 @@
                     selectedShapeHeight = shape.Size.Height;
                     resizeHandleStartPoint = new Point(shape.Location.X + shape.Size.Width, shape.Location.Y + shape.Size.Height);
 
-                    pnMain.Cursor = Cursors.SizeNWSE;
+                    pbMain.Cursor = Cursors.SizeNWSE;
                     break;
                 }
             }
@@ -360,7 +364,7 @@
                 lstObject.Add(selectedShape);
             }
         }
-        private void pnMain_MouseMove(object sender, MouseEventArgs e)
+        private void pbMain_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && selectedShape != null)
             {
@@ -370,10 +374,10 @@
 
                 if (selectedShape.Contains(e.Location) && resizeHandleStartPoint == Point.Empty)
                 {
-                    pnMain.Cursor = Cursors.SizeAll;
+                    pbMain.Cursor = Cursors.SizeAll;
                     movingShape = selectedShape;
                     selectedShape.Move(dx, dy);
-                    pnMain.Refresh();
+                    pbMain.Refresh();
                 }
                 else if (resizeHandleStartPoint != Point.Empty)
                 {
@@ -390,7 +394,7 @@
                         else newHeight = (int)(newWidth / aspectRatio);
                     }
                     selectedShape.Size = new Size(newWidth, newHeight);
-                    pnMain.Refresh();
+                    pbMain.Refresh();
                 }
                 else
                 {
@@ -401,13 +405,21 @@
                         diameter = Math.Min(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
                         selectedShape.Size = new Size(diameter, diameter);
                     }
-                    else
-                        selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
+                    else if (bArc == true)
+                    {
+                        float startAngle = (float)((Math.Atan2(e.Location.Y - lastPoint.Y, e.Location.X - lastPoint.X) / Math.PI) * 180);
+                        float sweepAngle = startAngle;
+
+                        selectedShape.Size = new Size(Math.Abs(dx), Math.Abs(dy));
+                        selectedShape.StartAngle = startAngle;
+                        selectedShape.SweepAngle = sweepAngle;
+                    }
+                    else selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
                     pnMain.Refresh();
                 }
             }
         }
-        private void pnMain_MouseUp(object sender, MouseEventArgs e)
+        private void pbMain_MouseUp(object sender, MouseEventArgs e)
         {
             if (selectedShape != null)
                 selectedShape = null;
@@ -415,7 +427,7 @@
             selectedShapeHeight = 0;
             resizeHandleStartPoint = Point.Empty;
             movingShape = null;
-            pnMain.Cursor = Cursors.Cross;
+            pbMain.Cursor = Cursors.Cross;
         }
     };
     public abstract class clsDrawObject

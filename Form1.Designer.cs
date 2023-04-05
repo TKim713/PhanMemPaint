@@ -43,7 +43,7 @@
             btnRect = new Button();
             panel2 = new Panel();
             label1 = new Label();
-            pnMain = new Panel();
+            pbMain = new PictureBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -260,18 +260,18 @@
             label1.TabIndex = 2;
             label1.Text = "Shape";
             // 
-            // pnMain
+            // pbMain
             // 
-            pnMain.BackColor = Color.White;
-            pnMain.Location = new Point(161, 12);
-            pnMain.Name = "pnMain";
-            pnMain.Size = new Size(583, 435);
-            pnMain.TabIndex = 1;
-            pnMain.Paint += pnMain_Paint;
-            pnMain.MouseDown += pnMain_MouseDown;
-            pnMain.MouseMove += pnMain_MouseMove;
-            pnMain.MouseUp += pnMain_MouseUp;
-            pnMain.MouseHover += pnMain_MouseHover;
+            pbMain.BackColor = Color.White;
+            pbMain.Location = new Point(161, 12);
+            pbMain.Name = "pbMain";
+            pbMain.Size = new Size(583, 435);
+            pbMain.TabIndex = 1;
+            pbMain.Paint += pbMain_Paint;
+            pbMain.MouseDown += pbMain_MouseDown;
+            pbMain.MouseMove += pbMain_MouseMove;
+            pbMain.MouseUp += pbMain_MouseUp;
+            pbMain.MouseHover += pbMain_MouseHover;
             // 
             // Form1
             // 
@@ -279,7 +279,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(756, 459);
-            Controls.Add(pnMain);
+            Controls.Add(pbMain);
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Form1";
@@ -295,7 +295,7 @@
         private Panel panel1;
         private Label label1;
         private Panel panel2;
-        private Panel pnMain;
+        private PictureBox pbMain;
         private Panel panel3;
         private Button btnEllipse;
         private Button btnFilledPolygon;
