@@ -28,6 +28,7 @@ namespace PhanMemPaint
         bool bFilledRect = false;
         bool bCircle = false;
         bool bFilledCircle = false;
+        bool bArc = false;
 
         //Danh sách đương thẳng
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
@@ -79,12 +80,14 @@ namespace PhanMemPaint
             this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
+            this.bArc = false;
 
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
         }
         private void btnFilledEllipse_Click(object sender, EventArgs e)
         {
@@ -96,12 +99,14 @@ namespace PhanMemPaint
             this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
+            this.bArc = false;
 
             btnEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
         }
         private void btnRect_Click(object sender, EventArgs e)
         {
@@ -113,12 +118,14 @@ namespace PhanMemPaint
             this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
+            this.bArc = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
         }
         private void btnFilledRect_Click(object sender, EventArgs e)
         {
@@ -130,12 +137,14 @@ namespace PhanMemPaint
             this.bRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
+            this.bArc = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
         }
         private void btnCircle_Click(object sender, EventArgs e)
         {
@@ -147,12 +156,14 @@ namespace PhanMemPaint
             this.bRect = false;
             this.bFilledRect = false;
             this.bFilledCircle = false;
+            this.bArc = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
         }
         private void btnFilledCircle_Click(object sender, EventArgs e)
         {
@@ -164,12 +175,33 @@ namespace PhanMemPaint
             this.bRect = false;
             this.bFilledRect = false;
             this.bCircle = false;
+            this.bArc = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
+        }
+        private void btnArc_Click(object sender, EventArgs e)
+        {
+            this.bArc = true;
+            btnArc.BackColor = Color.LightCoral;
+
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
         }
         private void btnNull_MouseHover(object sender, EventArgs e)
         {
