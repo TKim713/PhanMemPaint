@@ -39,14 +39,15 @@
             btnFilledCircle = new Button();
             btnLine = new Button();
             btnFilledRect = new Button();
-            btnNull = new Button();
             btnRect = new Button();
             panel2 = new Panel();
             label1 = new Label();
+            btnPencil = new Button();
             pbMain = new PictureBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -54,6 +55,7 @@
             panel1.BackColor = Color.Pink;
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
+            panel1.Controls.Add(btnPencil);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(143, 435);
@@ -71,7 +73,6 @@
             panel3.Controls.Add(btnFilledCircle);
             panel3.Controls.Add(btnLine);
             panel3.Controls.Add(btnFilledRect);
-            panel3.Controls.Add(btnNull);
             panel3.Controls.Add(btnRect);
             panel3.Location = new Point(3, 43);
             panel3.Name = "panel3";
@@ -89,9 +90,9 @@
             btnEllipse.Size = new Size(28, 28);
             btnEllipse.TabIndex = 1;
             btnEllipse.UseVisualStyleBackColor = true;
+            btnEllipse.Click += btnEllipse_Click;
             btnEllipse.MouseLeave += btnEllipse_MouseLeave;
             btnEllipse.MouseHover += btnEllipse_MouseHover;
-            btnEllipse.Click += btnEllipse_Click;
             // 
             // btnFilledPolygon
             // 
@@ -118,9 +119,9 @@
             btnCircle.Size = new Size(28, 28);
             btnCircle.TabIndex = 4;
             btnCircle.UseVisualStyleBackColor = true;
+            btnCircle.Click += btnCircle_Click;
             btnCircle.MouseLeave += btnCircle_MouseLeave;
             btnCircle.MouseHover += btnCircle_MouseHover;
-            btnCircle.Click += btnCircle_Click;
             // 
             // btnFilledEllipse
             // 
@@ -133,9 +134,9 @@
             btnFilledEllipse.Size = new Size(28, 28);
             btnFilledEllipse.TabIndex = 1;
             btnFilledEllipse.UseVisualStyleBackColor = true;
+            btnFilledEllipse.Click += btnFilledEllipse_Click;
             btnFilledEllipse.MouseLeave += btnFilledEllipse_MouseLeave;
             btnFilledEllipse.MouseHover += btnFilledEllipse_MouseHover;
-            btnFilledEllipse.Click += btnFilledEllipse_Click;
             // 
             // btnPolygon
             // 
@@ -162,9 +163,9 @@
             btnArc.Size = new Size(28, 28);
             btnArc.TabIndex = 6;
             btnArc.UseVisualStyleBackColor = true;
+            btnArc.Click += btnArc_Click;
             btnArc.MouseLeave += btnArc_MouseLeave;
             btnArc.MouseHover += btnArc_MouseHover;
-            btnArc.Click += btnArc_Click;
             // 
             // btnFilledCircle
             // 
@@ -177,9 +178,9 @@
             btnFilledCircle.Size = new Size(28, 28);
             btnFilledCircle.TabIndex = 5;
             btnFilledCircle.UseVisualStyleBackColor = true;
+            btnFilledCircle.Click += btnFilledCircle_Click;
             btnFilledCircle.MouseLeave += btnFilledCircle_MouseLeave;
             btnFilledCircle.MouseHover += btnFilledCircle_MouseHover;
-            btnFilledCircle.Click += btnFilledCircle_Click;
             // 
             // btnLine
             // 
@@ -192,9 +193,9 @@
             btnLine.Size = new Size(28, 28);
             btnLine.TabIndex = 1;
             btnLine.UseVisualStyleBackColor = false;
+            btnLine.Click += btnLine_Click;
             btnLine.MouseLeave += btnLine_MouseLeave;
             btnLine.MouseHover += btnLine_MouseHover;
-            btnLine.Click += btnLine_Click;
             // 
             // btnFilledRect
             // 
@@ -207,24 +208,9 @@
             btnFilledRect.Size = new Size(28, 28);
             btnFilledRect.TabIndex = 0;
             btnFilledRect.UseVisualStyleBackColor = false;
+            btnFilledRect.Click += btnFilledRect_Click;
             btnFilledRect.MouseLeave += btnFilledRect_MouseLeave;
             btnFilledRect.MouseHover += btnFilledRect_MouseHover;
-            btnFilledRect.Click += btnFilledRect_Click;
-            // 
-            // btnNull
-            // 
-            btnNull.FlatAppearance.BorderSize = 0;
-            btnNull.FlatAppearance.MouseOverBackColor = Color.LightCoral;
-            btnNull.FlatStyle = FlatStyle.Flat;
-            // btnNull.Image = Properties.Resources.NullIcon;
-            btnNull.Location = new Point(3, 5);
-            btnNull.Name = "btnNull";
-            btnNull.Size = new Size(28, 28);
-            btnNull.TabIndex = 3;
-            btnNull.UseVisualStyleBackColor = true;
-            btnNull.MouseLeave += btnNull_MouseLeave;
-            btnNull.MouseHover += btnNull_MouseHover;
-            btnNull.Click += btnNull_Click;
             // 
             // btnRect
             // 
@@ -237,9 +223,9 @@
             btnRect.Size = new Size(28, 28);
             btnRect.TabIndex = 1;
             btnRect.UseVisualStyleBackColor = false;
+            btnRect.Click += btnRect_Click;
             btnRect.MouseLeave += btnRect_MouseLeave;
             btnRect.MouseHover += btnRect_MouseHover;
-            btnRect.Click += btnRect_Click;
             // 
             // panel2
             // 
@@ -261,6 +247,23 @@
             label1.TabIndex = 2;
             label1.Text = "Shape";
             // 
+            // btnPencil
+            // 
+            btnPencil.BackColor = Color.Pink;
+            btnPencil.FlatAppearance.BorderColor = Color.White;
+            btnPencil.FlatAppearance.BorderSize = 2;
+            btnPencil.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnPencil.FlatStyle = FlatStyle.Flat;
+            btnPencil.Image = Properties.Resources.PencilIcon;
+            btnPencil.Location = new Point(4, 159);
+            btnPencil.Name = "btnPencil";
+            btnPencil.Size = new Size(60, 60);
+            btnPencil.TabIndex = 3;
+            btnPencil.UseVisualStyleBackColor = false;
+            btnPencil.Click += btnPencil_Click;
+            btnPencil.MouseLeave += btnPencil_MouseLeave;
+            btnPencil.MouseHover += btnPencil_MouseHover;
+            // 
             // pbMain
             // 
             pbMain.BackColor = Color.White;
@@ -268,11 +271,12 @@
             pbMain.Name = "pbMain";
             pbMain.Size = new Size(583, 435);
             pbMain.TabIndex = 1;
+            pbMain.TabStop = false;
             pbMain.Paint += pbMain_Paint;
             pbMain.MouseDown += pbMain_MouseDown;
+            pbMain.MouseHover += pbMain_MouseHover;
             pbMain.MouseMove += pbMain_MouseMove;
             pbMain.MouseUp += pbMain_MouseUp;
-            pbMain.MouseHover += pbMain_MouseHover;
             // 
             // Form1
             // 
@@ -288,6 +292,7 @@
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             ResumeLayout(false);
         }
 
@@ -307,7 +312,7 @@
         private Button btnFilledCircle;
         private Button btnLine;
         private Button btnFilledRect;
-        private Button btnNull;
+        private Button btnPencil;
         private Button btnRect;
     }
 }
