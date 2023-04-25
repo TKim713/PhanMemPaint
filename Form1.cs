@@ -22,6 +22,8 @@ namespace PhanMemPaint
         Bitmap bm;
 
         private bool isCtrlKeyPressed = false;
+        bool isDrawing = false;
+        bool bPencil = false;
         bool bEllipse = false;
         bool bFilledEllipse = false;
         bool bRect = false;
@@ -36,7 +38,7 @@ namespace PhanMemPaint
         private clsDrawObject selectedShape;
         private clsDrawObject movingShape;
         private Point lastPoint;
-        //private Point endPoint;
+        Point p1, p2;
 
         private int handleSize = 10;
         private int selectedShapeWidth;
@@ -49,22 +51,41 @@ namespace PhanMemPaint
             bm = new Bitmap(pbMain.Width, pbMain.Height);
             gp = Graphics.FromImage(bm);
             gp.Clear(Color.White);
-            //pbMain.Image(bm);
-            //gp.SmoothingMode = SmoothingMode.AntiAlias;
+            pbMain.Image = bm;
+            gp.SmoothingMode = SmoothingMode.AntiAlias;
             //myPen.StartCap = LineCap.Round;
             //myPen.EndCap = LineCap.Round;
-            //myPen.LineJoin = LineJoin.Round;
             myColor = Color.Black;
             myPen = new Pen(myColor);
+            myPen.LineJoin = LineJoin.Round;
+            myPen.StartCap = LineCap.Round;
+            myPen.EndCap = LineCap.Round;
             myBrush = new SolidBrush(myColor);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-        private void btnNull_Click(object sender, EventArgs e)
+        private void btnPencil_Click(object sender, EventArgs e)
         {
-            //this.bNull = true;
+            this.bPencil = true;
+            btnPencil.BackColor = Color.LightCoral;
+
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+            this.bArc = false;
+
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
         }
         private void btnLine_Click(object sender, EventArgs e)
         {
@@ -82,12 +103,16 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
             this.bArc = false;
 
+            this.bPencil = false;
+
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnFilledEllipse_Click(object sender, EventArgs e)
         {
@@ -101,12 +126,16 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
             this.bArc = false;
 
+            this.bPencil = false;
+
             btnEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnRect_Click(object sender, EventArgs e)
         {
@@ -120,12 +149,16 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
             this.bArc = false;
 
+            this.bPencil = false;
+
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnFilledRect_Click(object sender, EventArgs e)
         {
@@ -139,12 +172,16 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
             this.bArc = false;
 
+            this.bPencil = false;
+
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnCircle_Click(object sender, EventArgs e)
         {
@@ -158,12 +195,16 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
             this.bArc = false;
 
+            this.bPencil = false;
+
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnFilledCircle_Click(object sender, EventArgs e)
         {
@@ -177,12 +218,16 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bArc = false;
 
+            this.bPencil = false;
+
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnArc_Click(object sender, EventArgs e)
         {
@@ -196,21 +241,25 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
 
+            this.bPencil = false;
+
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
-        private void btnNull_MouseHover(object sender, EventArgs e)
+        private void btnPencil_MouseHover(object sender, EventArgs e)
         {
-            t1.Show("Default Pen", btnNull);
-            btnNull.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            t1.Show("Draw", btnPencil);
+            btnPencil.FlatAppearance.MouseOverBackColor = Color.LightCoral;
         }
-        private void btnNull_MouseLeave(object sender, EventArgs e)
+        private void btnPencil_MouseLeave(object sender, EventArgs e)
         {
-            btnNull.FlatAppearance.BorderColor = Color.White;
+            btnPencil.FlatAppearance.BorderColor = Color.White;
         }
         private void btnLine_MouseHover(object sender, EventArgs e)
         {
@@ -333,6 +382,7 @@ namespace PhanMemPaint
         }
         private void pbMain_MouseDown(object sender, MouseEventArgs e)
         {
+            lastPoint = e.Location;
             foreach (var shape in lstObject)
             {
                 Rectangle ltResizeHandleRect = new Rectangle(shape.Location.X - handleSize / 2, shape.Location.Y - handleSize / 2, handleSize, handleSize);
@@ -343,7 +393,6 @@ namespace PhanMemPaint
                 if (shape.Contains(e.Location))
                 {
                     selectedShape = shape;
-                    lastPoint = e.Location;
                     break;
                 }
                 //Top left corner
@@ -391,8 +440,14 @@ namespace PhanMemPaint
                     break;
                 }
             }
-            if (selectedShape == null)
+            if (bPencil == true)
             {
+                isDrawing = true;
+                p2 = e.Location;
+            }
+            if (selectedShape == null && bPencil != true)
+            {
+                isDrawing = true;
                 if (bEllipse == true)
                     selectedShape = new clsEllipse { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
                 if (bFilledEllipse == true)
@@ -410,7 +465,23 @@ namespace PhanMemPaint
         }
         private void pbMain_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && selectedShape != null)
+            if (isDrawing == true)
+            {
+                if (bPencil == true)
+                {
+                    p1 = e.Location;
+                    gp.DrawLine(myPen, p1, p2);
+                    p2 = p1;
+                }
+                else if (bCircle == true || bFilledCircle == true)
+                {
+                    int diameter;
+                    diameter = Math.Min(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
+                    selectedShape.Size = new Size(diameter, diameter);
+                }
+                else selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
+            }
+            else if (isDrawing == false && selectedShape != null)
             {
                 int dx = e.Location.X - lastPoint.X;
                 int dy = e.Location.Y - lastPoint.Y;
@@ -440,24 +511,14 @@ namespace PhanMemPaint
                     selectedShape.Size = new Size(newWidth, newHeight);
                     pbMain.Refresh();
                 }
-                else
-                {
-                    movingShape = null;
-                    if (bCircle == true || bFilledCircle == true)
-                    {
-                        int diameter;
-                        diameter = Math.Min(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
-                        selectedShape.Size = new Size(diameter, diameter);
-                    }
-                    else selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
-                    pbMain.Refresh();
-                }
             }
+            pbMain.Refresh();
         }
         private void pbMain_MouseUp(object sender, MouseEventArgs e)
         {
             if (selectedShape != null)
                 selectedShape = null;
+            isDrawing = false;
             selectedShapeWidth = 0;
             selectedShapeHeight = 0;
             resizeHandleStartPoint = Point.Empty;
