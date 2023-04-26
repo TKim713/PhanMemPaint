@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btnEraser = new Button();
             panel3 = new Panel();
             btnEllipse = new Button();
             btnFilledPolygon = new Button();
@@ -44,7 +46,6 @@
             label1 = new Label();
             btnPencil = new Button();
             pbMain = new PictureBox();
-            btnEraser = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -62,6 +63,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
+            // 
+            // btnEraser
+            // 
+            btnEraser.BackColor = Color.Pink;
+            btnEraser.FlatAppearance.BorderColor = Color.White;
+            btnEraser.FlatAppearance.BorderSize = 2;
+            btnEraser.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnEraser.FlatStyle = FlatStyle.Flat;
+            btnEraser.Image = (Image)resources.GetObject("btnEraser.Image");
+            btnEraser.Location = new Point(80, 159);
+            btnEraser.Name = "btnEraser";
+            btnEraser.Size = new Size(60, 60);
+            btnEraser.TabIndex = 9;
+            btnEraser.UseVisualStyleBackColor = false;
+            btnEraser.Click += btnEraser_Click;
+            btnEraser.MouseLeave += btnEraser_MouseLeave;
+            btnEraser.MouseHover += btnEraser_MouseHover;
             // 
             // panel3
             // 
@@ -279,23 +297,6 @@
             pbMain.MouseHover += pbMain_MouseHover;
             pbMain.MouseMove += pbMain_MouseMove;
             pbMain.MouseUp += pbMain_MouseUp;
-            // 
-            // btnEraser
-            // 
-            btnEraser.BackColor = Color.Pink;
-            btnEraser.FlatAppearance.BorderColor = Color.White;
-            btnEraser.FlatAppearance.BorderSize = 2;
-            btnEraser.FlatAppearance.MouseOverBackColor = Color.LightCoral;
-            btnEraser.FlatStyle = FlatStyle.Flat;
-            btnEraser.Image = Properties.Resources.EraserIcon;
-            btnEraser.Location = new Point(80, 159);
-            btnEraser.Name = "btnEraser";
-            btnEraser.Size = new Size(60, 60);
-            btnEraser.TabIndex = 9;
-            btnEraser.UseVisualStyleBackColor = false;
-            btnEraser.Click += btnEraser_Click;
-            btnEraser.MouseLeave += btnEraser_MouseLeave;
-            btnEraser.MouseHover += btnEraser_MouseHover;
             // 
             // Form1
             // 

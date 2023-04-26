@@ -23,8 +23,7 @@ namespace PhanMemPaint
 
         private bool isCtrlKeyPressed = false;
         bool isDrawing = false;
-        bool bPencil = false;
-        bool bEraser = false;
+        bool bLine = false;
         bool bEllipse = false;
         bool bFilledEllipse = false;
         bool bRect = false;
@@ -32,6 +31,9 @@ namespace PhanMemPaint
         bool bCircle = false;
         bool bFilledCircle = false;
         bool bArc = false;
+
+        bool bPencil = false;
+        bool bEraser = false;
 
         //Danh sách đương thẳng
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
@@ -66,35 +68,10 @@ namespace PhanMemPaint
         {
 
         }
-        private void btnPencil_Click(object sender, EventArgs e)
+        private void btnLine_Click(object sender, EventArgs e)
         {
-            this.bPencil = true;
-            btnPencil.BackColor = Color.LightCoral;
-
-            this.bEllipse = false;
-            this.bFilledEllipse = false;
-            this.bRect = false;
-            this.bFilledRect = false;
-            this.bCircle = false;
-            this.bFilledCircle = false;
-            this.bArc = false;
-
-            this.bEraser = false;
-
-            btnEllipse.BackColor = Color.White;
-            btnFilledEllipse.BackColor = Color.White;
-            btnRect.BackColor = Color.White;
-            btnFilledRect.BackColor = Color.White;
-            btnCircle.BackColor = Color.White;
-            btnFilledCircle.BackColor = Color.White;
-            btnArc.BackColor = Color.White;
-
-            btnEraser.BackColor = Color.Pink;
-        }
-        private void btnEraser_Click(object sender, EventArgs e)
-        {
-            this.bEraser = true;
-            btnEraser.BackColor = Color.LightCoral;
+            this.bLine = true;
+            btnLine.BackColor = Color.LightCoral;
 
             this.bEllipse = false;
             this.bFilledEllipse = false;
@@ -105,6 +82,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
@@ -115,16 +93,14 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
-        }
-        private void btnLine_Click(object sender, EventArgs e)
-        {
-            //this.bLine = true;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnEllipse_Click(object sender, EventArgs e)
         {
             this.bEllipse = true;
             btnEllipse.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bFilledEllipse = false;
             this.bRect = false;
             this.bFilledRect = false;
@@ -135,6 +111,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
@@ -150,6 +127,7 @@ namespace PhanMemPaint
             this.bFilledEllipse = true;
             btnFilledEllipse.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bEllipse = false;
             this.bRect = false;
             this.bFilledRect = false;
@@ -160,6 +138,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
@@ -175,6 +154,7 @@ namespace PhanMemPaint
             this.bRect = true;
             btnRect.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bFilledRect = false;
@@ -185,6 +165,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnFilledRect.BackColor = Color.White;
@@ -200,6 +181,7 @@ namespace PhanMemPaint
             this.bFilledRect = true;
             btnFilledRect.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bRect = false;
@@ -210,6 +192,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -225,6 +208,7 @@ namespace PhanMemPaint
             this.bCircle = true;
             btnCircle.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bRect = false;
@@ -235,6 +219,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -250,6 +235,7 @@ namespace PhanMemPaint
             this.bFilledCircle = true;
             btnFilledCircle.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bRect = false;
@@ -260,6 +246,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -275,6 +262,7 @@ namespace PhanMemPaint
             this.bArc = true;
             btnArc.BackColor = Color.LightCoral;
 
+            this.bLine = false;
             this.bEllipse = false;
             this.bFilledEllipse = false;
             this.bRect = false;
@@ -285,6 +273,7 @@ namespace PhanMemPaint
             this.bPencil = false;
             this.bEraser = false;
 
+            btnLine.BackColor = Color.White;
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -294,6 +283,60 @@ namespace PhanMemPaint
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
+        }
+        private void btnPencil_Click(object sender, EventArgs e)
+        {
+            this.bPencil = true;
+            btnPencil.BackColor = Color.LightCoral;
+
+            this.bLine = false;
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+            this.bArc = false;
+
+            this.bEraser = false;
+
+            btnLine.BackColor = Color.White;
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
+
+            btnEraser.BackColor = Color.Pink;
+        }
+        private void btnEraser_Click(object sender, EventArgs e)
+        {
+            this.bEraser = true;
+            btnEraser.BackColor = Color.LightCoral;
+
+            this.bLine = false;
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+            this.bArc = false;
+
+            this.bPencil = false;
+
+            btnLine.BackColor = Color.White;
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnPencil_MouseHover(object sender, EventArgs e)
         {
@@ -500,6 +543,8 @@ namespace PhanMemPaint
             else if (selectedShape == null)
             {
                 isDrawing = true;
+                if (bLine == true)
+                    selectedShape = new clsLine { myPen = myPen, p1 = e.Location};
                 if (bEllipse == true)
                     selectedShape = new clsEllipse { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
                 if (bFilledEllipse == true)
@@ -537,6 +582,10 @@ namespace PhanMemPaint
                     diameter = Math.Min(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
                     selectedShape.Size = new Size(diameter, diameter);
                 }
+                else if (bLine == true)
+                {
+                    selectedShape.p2 = e.Location;
+                }    
                 else selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
             }
             else if (isDrawing == false && selectedShape != null)
@@ -586,6 +635,8 @@ namespace PhanMemPaint
     };
     public abstract class clsDrawObject
     {
+        public Point p1;
+        public Point p2;
         public Point Location { get; set; }
         public Size Size { get; set; }
         public Pen myPen { get; set; }
@@ -596,6 +647,19 @@ namespace PhanMemPaint
             Location = new Point(Location.X + dx, Location.Y + dy);
         }
         public abstract bool Contains(Point point);
+    };
+    public class clsLine : clsDrawObject
+    {
+        public override void Draw(Graphics myGp)
+        {
+            myGp.DrawLine(myPen, this.p1, this.p2);
+        }
+        public override bool Contains(Point point)
+        {
+            int dx = point.X - p1.X;
+            int dy = point.Y - p1.Y;
+            return dx * dx + dy * dy < dx * dx + dy * dy;
+        }
     };
     public class clsEllipse : clsDrawObject
     {
