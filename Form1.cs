@@ -18,12 +18,13 @@ namespace PhanMemPaint
         Graphics gp;
         Color myColor;
         SolidBrush myBrush;
-        Pen myPen;
+        Pen myPen, myEraser;
         Bitmap bm;
 
         private bool isCtrlKeyPressed = false;
         bool isDrawing = false;
         bool bPencil = false;
+        bool bEraser = false;
         bool bEllipse = false;
         bool bFilledEllipse = false;
         bool bRect = false;
@@ -53,10 +54,9 @@ namespace PhanMemPaint
             gp.Clear(Color.White);
             pbMain.Image = bm;
             gp.SmoothingMode = SmoothingMode.AntiAlias;
-            //myPen.StartCap = LineCap.Round;
-            //myPen.EndCap = LineCap.Round;
             myColor = Color.Black;
             myPen = new Pen(myColor);
+            myEraser = new Pen(Color.White, 100);
             myPen.LineJoin = LineJoin.Round;
             myPen.StartCap = LineCap.Round;
             myPen.EndCap = LineCap.Round;
@@ -86,6 +86,31 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+        }
+        private void btnEraser_Click(object sender, EventArgs e)
+        {
+            this.bEraser = true;
+            btnEraser.BackColor = Color.LightCoral;
+
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+            this.bArc = false;
+
+            this.bPencil = false;
+
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
         }
         private void btnLine_Click(object sender, EventArgs e)
         {
@@ -260,6 +285,15 @@ namespace PhanMemPaint
         private void btnPencil_MouseLeave(object sender, EventArgs e)
         {
             btnPencil.FlatAppearance.BorderColor = Color.White;
+        }
+        private void btnEraser_MouseHover(object sender, EventArgs e)
+        {
+            t1.Show("Erase", btnEraser);
+            btnEraser.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+        }
+        private void btnEraser_MouseLeave(object sender, EventArgs e)
+        {
+            btnEraser.FlatAppearance.BorderColor = Color.White;
         }
         private void btnLine_MouseHover(object sender, EventArgs e)
         {
@@ -440,12 +474,12 @@ namespace PhanMemPaint
                     break;
                 }
             }
-            if (bPencil == true)
+            if (bPencil == true || bEraser == true)
             {
                 isDrawing = true;
                 p2 = e.Location;
             }
-            if (selectedShape == null && bPencil != true)
+            else if (selectedShape == null)
             {
                 isDrawing = true;
                 if (bEllipse == true)
@@ -471,6 +505,12 @@ namespace PhanMemPaint
                 {
                     p1 = e.Location;
                     gp.DrawLine(myPen, p1, p2);
+                    p2 = p1;
+                }
+                else if (bEraser == true)
+                {
+                    p1 = e.Location;
+                    gp.DrawLine(myEraser, p1, p2);
                     p2 = p1;
                 }
                 else if (bCircle == true || bFilledCircle == true)
