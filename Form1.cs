@@ -79,6 +79,8 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
             this.bArc = false;
 
+            this.bEraser = false;
+
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -86,6 +88,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnEraser_Click(object sender, EventArgs e)
         {
@@ -129,6 +133,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnFilledEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -138,6 +143,7 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnFilledEllipse_Click(object sender, EventArgs e)
         {
@@ -152,6 +158,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnRect.BackColor = Color.White;
@@ -161,6 +168,7 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnRect_Click(object sender, EventArgs e)
         {
@@ -175,6 +183,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
@@ -184,6 +193,7 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnFilledRect_Click(object sender, EventArgs e)
         {
@@ -198,6 +208,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
@@ -207,6 +218,7 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnCircle_Click(object sender, EventArgs e)
         {
@@ -221,6 +233,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
@@ -230,6 +243,7 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnFilledCircle_Click(object sender, EventArgs e)
         {
@@ -244,6 +258,7 @@ namespace PhanMemPaint
             this.bArc = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
@@ -253,6 +268,7 @@ namespace PhanMemPaint
             btnArc.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnArc_Click(object sender, EventArgs e)
         {
@@ -267,6 +283,7 @@ namespace PhanMemPaint
             this.bFilledCircle = false;
 
             this.bPencil = false;
+            this.bEraser = false;
 
             btnEllipse.BackColor = Color.White;
             btnFilledEllipse.BackColor = Color.White;
@@ -276,6 +293,7 @@ namespace PhanMemPaint
             btnFilledCircle.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
         }
         private void btnPencil_MouseHover(object sender, EventArgs e)
         {
