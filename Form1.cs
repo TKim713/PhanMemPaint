@@ -458,10 +458,10 @@ namespace PhanMemPaint
                 if (movingShape != null && selectedShape != null)
                 {
                     //4 corner
-                    Rectangle ltResizeHandleRect = new Rectangle(movingShape.Location.X - handleSize / 2, movingShape.Location.Y - handleSize / 2, handleSize, handleSize);
-                    Rectangle rtResizeHandleRect = new Rectangle(movingShape.Location.X + movingShape.Size.Width - handleSize / 2, movingShape.Location.Y - handleSize / 2, handleSize, handleSize);
-                    Rectangle lbResizeHandleRect = new Rectangle(movingShape.Location.X - handleSize / 2, movingShape.Location.Y + movingShape.Size.Height - handleSize / 2, handleSize, handleSize);
-                    Rectangle rbResizeHandleRect = new Rectangle(movingShape.Location.X + movingShape.Size.Width - handleSize / 2, movingShape.Location.Y + movingShape.Size.Height - handleSize / 2, handleSize, handleSize);
+                    Rectangle ltResizeHandleRect = new Rectangle(movingShape.p1.X - handleSize / 2, movingShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                    Rectangle rtResizeHandleRect = new Rectangle(movingShape.p1.X + movingShape.Size.Width - handleSize / 2, movingShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                    Rectangle lbResizeHandleRect = new Rectangle(movingShape.p1.X - handleSize / 2, movingShape.p1.Y + movingShape.Size.Height - handleSize / 2, handleSize, handleSize);
+                    Rectangle rbResizeHandleRect = new Rectangle(movingShape.p1.X + movingShape.Size.Width - handleSize / 2, movingShape.p1.Y + movingShape.Size.Height - handleSize / 2, handleSize, handleSize);
 
                     e.Graphics.FillEllipse(Brushes.SlateGray, ltResizeHandleRect);
                     e.Graphics.FillEllipse(Brushes.SlateGray, rtResizeHandleRect);
@@ -471,7 +471,7 @@ namespace PhanMemPaint
                     //Border line
                     Pen borderPen = new Pen(Color.SlateGray, 1);
                     borderPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                    e.Graphics.DrawRectangle(borderPen, new Rectangle(movingShape.Location, movingShape.Size));
+                    e.Graphics.DrawRectangle(borderPen, new Rectangle(movingShape.p1.X, movingShape.p1.Y, movingShape.Size.Width, movingShape.Size.Height));
                 }
             }
         }
@@ -480,10 +480,10 @@ namespace PhanMemPaint
             lastPoint = e.Location;
             foreach (var shape in lstObject)
             {
-                Rectangle ltResizeHandleRect = new Rectangle(shape.Location.X - handleSize / 2, shape.Location.Y - handleSize / 2, handleSize, handleSize);
-                Rectangle rtResizeHandleRect = new Rectangle(shape.Location.X + shape.Size.Width - handleSize / 2, shape.Location.Y - handleSize / 2, handleSize, handleSize);
-                Rectangle lbResizeHandleRect = new Rectangle(shape.Location.X - handleSize / 2, shape.Location.Y + shape.Size.Height - handleSize / 2, handleSize, handleSize);
-                Rectangle rbResizeHandleRect = new Rectangle(shape.Location.X + shape.Size.Width - handleSize / 2, shape.Location.Y + shape.Size.Height - handleSize / 2, handleSize, handleSize);
+                Rectangle ltResizeHandleRect = new Rectangle(shape.p1.X - handleSize / 2, shape.p1.Y - handleSize / 2, handleSize, handleSize);
+                Rectangle rtResizeHandleRect = new Rectangle(shape.p1.X + shape.Size.Width - handleSize / 2, shape.p1.Y - handleSize / 2, handleSize, handleSize);
+                Rectangle lbResizeHandleRect = new Rectangle(shape.p1.X - handleSize / 2, shape.p1.Y + shape.Size.Height - handleSize / 2, handleSize, handleSize);
+                Rectangle rbResizeHandleRect = new Rectangle(shape.p1.X + shape.Size.Width - handleSize / 2, shape.p1.Y + shape.Size.Height - handleSize / 2, handleSize, handleSize);
 
                 if (shape.Contains(e.Location))
                 {
@@ -496,7 +496,7 @@ namespace PhanMemPaint
                     selectedShape = shape;
                     selectedShapeWidth = shape.Size.Width;
                     selectedShapeHeight = shape.Size.Height;
-                    resizeHandleStartPoint = new Point(shape.Location.X, shape.Location.Y);
+                    resizeHandleStartPoint = new Point(shape.p1.X, shape.p1.Y);
 
                     pbMain.Cursor = Cursors.SizeNWSE;
                     break;
@@ -507,7 +507,7 @@ namespace PhanMemPaint
                     selectedShape = shape;
                     selectedShapeWidth = shape.Size.Width;
                     selectedShapeHeight = shape.Size.Height;
-                    resizeHandleStartPoint = new Point(shape.Location.X + shape.Size.Width, shape.Location.Y);
+                    resizeHandleStartPoint = new Point(shape.p1.X + shape.Size.Width, shape.p1.Y);
 
                     pbMain.Cursor = Cursors.SizeNESW;
                     break;
@@ -518,7 +518,7 @@ namespace PhanMemPaint
                     selectedShape = shape;
                     selectedShapeWidth = shape.Size.Width;
                     selectedShapeHeight = shape.Size.Height;
-                    resizeHandleStartPoint = new Point(shape.Location.X, shape.Location.Y + shape.Size.Height);
+                    resizeHandleStartPoint = new Point(shape.p1.X, shape.p1.Y + shape.Size.Height);
 
                     pbMain.Cursor = Cursors.SizeNESW;
                     break;
@@ -529,7 +529,7 @@ namespace PhanMemPaint
                     selectedShape = shape;
                     selectedShapeWidth = shape.Size.Width;
                     selectedShapeHeight = shape.Size.Height;
-                    resizeHandleStartPoint = new Point(shape.Location.X + shape.Size.Width, shape.Location.Y + shape.Size.Height);
+                    resizeHandleStartPoint = new Point(shape.p1.X + shape.Size.Width, shape.p1.Y + shape.Size.Height);
 
                     pbMain.Cursor = Cursors.SizeNWSE;
                     break;
@@ -546,17 +546,17 @@ namespace PhanMemPaint
                 if (bLine == true)
                     selectedShape = new clsLine { myPen = myPen, p1 = e.Location};
                 if (bEllipse == true)
-                    selectedShape = new clsEllipse { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
+                    selectedShape = new clsEllipse { myPen = myPen, p1 = e.Location };
                 if (bFilledEllipse == true)
-                    selectedShape = new clsFilledEllipse { myBrush = myBrush, Location = e.Location, Size = new Size(0, 0) };
+                    selectedShape = new clsFilledEllipse { myBrush = myBrush, p1 = e.Location };
                 if (bRect == true)
-                    selectedShape = new clsRect { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
+                    selectedShape = new clsRect { myPen = myPen, p1 = e.Location };
                 if (bFilledRect == true)
-                    selectedShape = new clsFilledRect { myBrush = myBrush, Location = e.Location, Size = new Size(0, 0) };
+                    selectedShape = new clsFilledRect { myBrush = myBrush, p1 = e.Location };
                 if (bCircle == true)
-                    selectedShape = new clsCircle { myPen = myPen, Location = e.Location, Size = new Size(0, 0) };
+                    selectedShape = new clsCircle { myPen = myPen, p1 = e.Location };
                 if (bFilledCircle == true)
-                    selectedShape = new clsFilledCircle { myBrush = myBrush, Location = e.Location, Size = new Size(0, 0) };
+                    selectedShape = new clsFilledCircle { myBrush = myBrush, p1 = e.Location };
                 lstObject.Add(selectedShape);
             }
         }
@@ -576,17 +576,7 @@ namespace PhanMemPaint
                     gp.DrawLine(myEraser, p1, p2);
                     p2 = p1;
                 }
-                else if (bCircle == true || bFilledCircle == true)
-                {
-                    int diameter;
-                    diameter = Math.Min(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
-                    selectedShape.Size = new Size(diameter, diameter);
-                }
-                else if (bLine == true)
-                {
-                    selectedShape.p2 = e.Location;
-                }    
-                else selectedShape.Size = new Size(Math.Abs(e.Location.X - selectedShape.Location.X), Math.Abs(e.Location.Y - selectedShape.Location.Y));
+                else selectedShape.p2 = e.Location;
             }
             else if (isDrawing == false && selectedShape != null)
             {
@@ -603,19 +593,8 @@ namespace PhanMemPaint
                 }
                 else if (resizeHandleStartPoint != Point.Empty)
                 {
-                    // Dragging
-                    int newWidth = selectedShapeWidth + (e.Location.X - resizeHandleStartPoint.X);
-                    int newHeight = selectedShapeHeight + (e.Location.Y - resizeHandleStartPoint.Y);
-
-                    // Keep proportions of the shape
-                    if (Control.ModifierKeys == Keys.Shift)
-                    {
-                        double aspectRatio = (double)selectedShape.Size.Width / selectedShape.Size.Height;
-                        if (newWidth / aspectRatio > newHeight)
-                            newWidth = (int)(newHeight * aspectRatio);
-                        else newHeight = (int)(newWidth / aspectRatio);
-                    }
-                    selectedShape.Size = new Size(newWidth, newHeight);
+                    selectedShape.p1.X = selectedShape.p1.X + dx;
+                    selectedShape.p1.Y = selectedShape.p1.Y + dy;
                     pbMain.Refresh();
                 }
             }
@@ -637,14 +616,17 @@ namespace PhanMemPaint
     {
         public Point p1;
         public Point p2;
-        public Point Location { get; set; }
-        public Size Size { get; set; }
+        public Size Size;
         public Pen myPen { get; set; }
         public SolidBrush myBrush { get; set; }
         public abstract void Draw(Graphics myGp);
         public virtual void Move(int dx, int dy)
         {
-            Location = new Point(Location.X + dx, Location.Y + dy);
+            p1.X = p1.X + dx;
+            p1.Y = p1.Y + dy;
+
+            p2.X = p2.X + dx;
+            p2.Y = p2.Y + dy;
         }
         public abstract bool Contains(Point point);
     };
@@ -652,26 +634,28 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.DrawLine(myPen, this.p1, this.p2);
+            myGp.DrawLine(myPen, p1, p2);
         }
         public override bool Contains(Point point)
         {
-            int dx = point.X - p1.X;
-            int dy = point.Y - p1.Y;
-            return dx * dx + dy * dy < dx * dx + dy * dy;
+            if (point.X >= p1.X && point.X <= p1.X + Size.Width && point.Y >= p1.Y && point.Y <= p1.Y + Size.Height)
+                return true;
+            return false;
         }
     };
     public class clsEllipse : clsDrawObject
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.DrawEllipse(myPen, new Rectangle(Location, Size));
+            Size.Width = Math.Abs(p2.X - p1.X);
+            Size.Height = Math.Abs(p2.Y - p1.Y);
+            myGp.DrawEllipse(myPen, new Rectangle(p1.X, p1.Y, Size.Width, Size.Height));
         }
         public override bool Contains(Point point)
         {
             int r = Size.Width / 2;
-            int dx = point.X - (Location.X + r);
-            int dy = point.Y - (Location.Y + r);
+            int dx = point.X - (p1.X + r);
+            int dy = point.Y - (p1.Y + r);
             return dx * dx + dy * dy < r * r;
         }
     };
@@ -679,13 +663,15 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.FillEllipse(myBrush, new Rectangle(Location, Size));
+            Size.Width = Math.Abs(p2.X - p1.X);
+            Size.Height = Math.Abs(p2.Y - p1.Y);
+            myGp.FillEllipse(myBrush, new Rectangle(p1.X, p1.Y, Size.Width, Size.Height));
         }
         public override bool Contains(Point point)
         {
             int r = Size.Width / 2;
-            int dx = point.X - (Location.X + r);
-            int dy = point.Y - (Location.Y + r);
+            int dx = point.X - (p1.X + r);
+            int dy = point.Y - (p1.Y + r);
             return dx * dx + dy * dy < r * r;
         }
     };
@@ -693,11 +679,13 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.DrawRectangle(myPen, new Rectangle(Location, Size));
+            Size.Width = Math.Abs(p2.X - p1.X);
+            Size.Height = Math.Abs(p2.Y - p1.Y);
+            myGp.DrawRectangle(myPen, new Rectangle(p1.X, p1.Y, Size.Width, Size.Height));
         }
         public override bool Contains(Point point)
         {
-            if (point.X >= Location.X && point.X <= Location.X + Size.Width && point.Y >= Location.Y && point.Y <= Location.Y + Size.Height)
+            if (point.X >= p1.X && point.X <= p1.X + Size.Width && point.Y >= p1.Y && point.Y <= p1.Y + Size.Height)
                 return true;
             return false;
         }
@@ -706,11 +694,13 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.FillRectangle(myBrush, new Rectangle(Location, Size));
+            Size.Width = Math.Abs(p2.X - p1.X);
+            Size.Height = Math.Abs(p2.Y - p1.Y);
+            myGp.FillRectangle(myBrush, new Rectangle(p1.X, p1.Y, Size.Width, Size.Height));
         }
         public override bool Contains(Point point)
         {
-            if (point.X >= Location.X && point.X <= Location.X + Size.Width && point.Y >= Location.Y && point.Y <= Location.Y + Size.Height)
+            if (point.X >= p1.X && point.X <= p1.X + Size.Width && point.Y >= p1.Y && point.Y <= p1.Y + Size.Height)
                 return true;
             return false;
         }
@@ -719,13 +709,17 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.DrawEllipse(myPen, new Rectangle(Location, Size));
+            Size.Width = Math.Abs(p2.X - p1.X);
+            Size.Height = Math.Abs(p2.Y - p1.Y);
+            int diameter;
+            diameter = Math.Min(Size.Width, Size.Height);
+            myGp.DrawEllipse(myPen, new Rectangle(p1.X, p1.Y, diameter, diameter));
         }
         public override bool Contains(Point point)
         {
             int r = Size.Width / 2;
-            int dx = point.X - (Location.X + r);
-            int dy = point.Y - (Location.Y + r);
+            int dx = point.X - (p1.X + r);
+            int dy = point.Y - (p1.Y + r);
             return dx * dx + dy * dy < r * r;
         }
     };
@@ -733,13 +727,17 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            myGp.FillEllipse(myBrush, new Rectangle(Location, Size));
+            Size.Width = Math.Abs(p2.X - p1.X);
+            Size.Height = Math.Abs(p2.Y - p1.Y);
+            int diameter;
+            diameter = Math.Min(Size.Width, Size.Height);
+            myGp.FillEllipse(myBrush, new Rectangle(p1.X, p1.Y, diameter, diameter));
         }
         public override bool Contains(Point point)
         {
             int r = Size.Width / 2;
-            int dx = point.X - (Location.X + r);
-            int dy = point.Y - (Location.Y + r);
+            int dx = point.X - (p1.X + r);
+            int dy = point.Y - (p1.Y + r);
             return dx * dx + dy * dy < r * r;
         }
     };
