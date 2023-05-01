@@ -118,40 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CircleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CircleIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MouseCursorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MouseCursorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FilledEllipseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FilledEllipseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="EraserIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EraserIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FilledRectIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FilledRectIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LineIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PencilIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PencilIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FilledPolygonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FilledPolygonIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EllipseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EllipseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FilledCircleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FilledCircleIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RectIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RectIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PolygonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PolygonIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CircleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CircleIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArcIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArcIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EraserIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EraserIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RectIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RectIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PencilIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PencilIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LineIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FilledCircleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FilledCircleIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PolygonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PolygonIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FilledPolygonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FilledPolygonIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ColorPalletteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ColorPalletteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
