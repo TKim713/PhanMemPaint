@@ -83,6 +83,16 @@ namespace PhanMemPaint.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ColorPalletteIcon {
+            get {
+                object obj = ResourceManager.GetObject("ColorPalletteIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EllipseIcon {
             get {
                 object obj = ResourceManager.GetObject("EllipseIcon", resourceCulture);
@@ -146,6 +156,16 @@ namespace PhanMemPaint.Properties {
         internal static System.Drawing.Bitmap LineIcon {
             get {
                 object obj = ResourceManager.GetObject("LineIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MouseCursorIcon {
+            get {
+                object obj = ResourceManager.GetObject("MouseCursorIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btnSelect = new Button();
             btnEraser = new Button();
             panel3 = new Panel();
             btnEllipse = new Button();
@@ -46,6 +47,8 @@
             label1 = new Label();
             btnPencil = new Button();
             pbMain = new PictureBox();
+            btnColor = new Button();
+            colorDialog1 = new ColorDialog();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -55,6 +58,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Pink;
+            panel1.Controls.Add(btnColor);
+            panel1.Controls.Add(btnSelect);
             panel1.Controls.Add(btnEraser);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
@@ -63,6 +68,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
+            // 
+            // btnSelect
+            // 
+            btnSelect.BackColor = Color.Pink;
+            btnSelect.FlatAppearance.BorderColor = Color.White;
+            btnSelect.FlatAppearance.BorderSize = 2;
+            btnSelect.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnSelect.FlatStyle = FlatStyle.Flat;
+            btnSelect.Image = Properties.Resources.MouseCursorIcon;
+            btnSelect.Location = new Point(4, 225);
+            btnSelect.Name = "btnSelect";
+            btnSelect.Size = new Size(60, 60);
+            btnSelect.TabIndex = 10;
+            btnSelect.UseVisualStyleBackColor = false;
+            btnSelect.Click += btnSelect_Click;
+            btnSelect.MouseLeave += btnSelect_MouseLeave;
+            btnSelect.MouseHover += btnSelect_MouseHover;
             // 
             // btnEraser
             // 
@@ -105,7 +127,7 @@
             btnEllipse.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             btnEllipse.FlatStyle = FlatStyle.Flat;
             btnEllipse.Image = Properties.Resources.EllipseIcon;
-            btnEllipse.Location = new Point(68, 5);
+            btnEllipse.Location = new Point(55, 5);
             btnEllipse.Name = "btnEllipse";
             btnEllipse.Size = new Size(28, 28);
             btnEllipse.TabIndex = 1;
@@ -149,7 +171,7 @@
             btnFilledEllipse.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             btnFilledEllipse.FlatStyle = FlatStyle.Flat;
             btnFilledEllipse.Image = Properties.Resources.FilledEllipseIcon;
-            btnFilledEllipse.Location = new Point(102, 5);
+            btnFilledEllipse.Location = new Point(89, 5);
             btnFilledEllipse.Name = "btnFilledEllipse";
             btnFilledEllipse.Size = new Size(28, 28);
             btnFilledEllipse.TabIndex = 1;
@@ -208,7 +230,7 @@
             btnLine.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             btnLine.FlatStyle = FlatStyle.Flat;
             btnLine.Image = Properties.Resources.LineIcon;
-            btnLine.Location = new Point(37, 5);
+            btnLine.Location = new Point(21, 5);
             btnLine.Name = "btnLine";
             btnLine.Size = new Size(28, 28);
             btnLine.TabIndex = 1;
@@ -261,7 +283,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(30, 12);
+            label1.Location = new Point(37, 12);
             label1.Name = "label1";
             label1.Size = new Size(66, 25);
             label1.TabIndex = 2;
@@ -297,6 +319,23 @@
             pbMain.MouseHover += pbMain_MouseHover;
             pbMain.MouseMove += pbMain_MouseMove;
             pbMain.MouseUp += pbMain_MouseUp;
+            // 
+            // btnColor
+            // 
+            btnColor.BackColor = Color.Pink;
+            btnColor.FlatAppearance.BorderColor = Color.White;
+            btnColor.FlatAppearance.BorderSize = 2;
+            btnColor.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnColor.FlatStyle = FlatStyle.Flat;
+            btnColor.Image = Properties.Resources.ColorPalletteIcon;
+            btnColor.Location = new Point(80, 225);
+            btnColor.Name = "btnColor";
+            btnColor.Size = new Size(60, 60);
+            btnColor.TabIndex = 11;
+            btnColor.UseVisualStyleBackColor = false;
+            btnColor.Click += btnColor_Click;
+            btnColor.MouseLeave += btnColor_MouseLeave;
+            btnColor.MouseHover += btnColor_MouseHover;
             // 
             // Form1
             // 
@@ -335,5 +374,8 @@
         private Button btnPencil;
         private Button btnRect;
         private Button btnEraser;
+        private Button btnSelect;
+        private Button btnColor;
+        private ColorDialog colorDialog1;
     }
 }
