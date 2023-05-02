@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btnColor = new Button();
             btnSelect = new Button();
             btnEraser = new Button();
             panel3 = new Panel();
@@ -47,12 +49,16 @@
             label1 = new Label();
             btnPencil = new Button();
             pbMain = new PictureBox();
-            btnColor = new Button();
             colorDialog1 = new ColorDialog();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            groupToolStripMenuItem = new ToolStripMenuItem();
+            ungroupToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -68,6 +74,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
+            // 
+            // btnColor
+            // 
+            btnColor.BackColor = Color.Pink;
+            btnColor.FlatAppearance.BorderColor = Color.White;
+            btnColor.FlatAppearance.BorderSize = 2;
+            btnColor.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnColor.FlatStyle = FlatStyle.Flat;
+            btnColor.Image = Properties.Resources.ColorPalletteIcon;
+            btnColor.Location = new Point(80, 225);
+            btnColor.Name = "btnColor";
+            btnColor.Size = new Size(60, 60);
+            btnColor.TabIndex = 11;
+            btnColor.UseVisualStyleBackColor = false;
+            btnColor.Click += btnColor_Click;
+            btnColor.MouseLeave += btnColor_MouseLeave;
+            btnColor.MouseHover += btnColor_MouseHover;
             // 
             // btnSelect
             // 
@@ -320,22 +343,29 @@
             pbMain.MouseMove += pbMain_MouseMove;
             pbMain.MouseUp += pbMain_MouseUp;
             // 
-            // btnColor
+            // contextMenuStrip1
             // 
-            btnColor.BackColor = Color.Pink;
-            btnColor.FlatAppearance.BorderColor = Color.White;
-            btnColor.FlatAppearance.BorderSize = 2;
-            btnColor.FlatAppearance.MouseOverBackColor = Color.LightCoral;
-            btnColor.FlatStyle = FlatStyle.Flat;
-            btnColor.Image = Properties.Resources.ColorPalletteIcon;
-            btnColor.Location = new Point(80, 225);
-            btnColor.Name = "btnColor";
-            btnColor.Size = new Size(60, 60);
-            btnColor.TabIndex = 11;
-            btnColor.UseVisualStyleBackColor = false;
-            btnColor.Click += btnColor_Click;
-            btnColor.MouseLeave += btnColor_MouseLeave;
-            btnColor.MouseHover += btnColor_MouseHover;
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { groupToolStripMenuItem, ungroupToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(122, 70);
+            // 
+            // groupToolStripMenuItem
+            // 
+            groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+            groupToolStripMenuItem.Size = new Size(180, 22);
+            groupToolStripMenuItem.Text = "Group";
+            // 
+            // ungroupToolStripMenuItem
+            // 
+            ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
+            ungroupToolStripMenuItem.Size = new Size(180, 22);
+            ungroupToolStripMenuItem.Text = "Ungroup";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(180, 22);
+            deleteToolStripMenuItem.Text = "Delete";
             // 
             // Form1
             // 
@@ -352,6 +382,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -377,5 +408,9 @@
         private Button btnSelect;
         private Button btnColor;
         private ColorDialog colorDialog1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem groupToolStripMenuItem;
+        private ToolStripMenuItem ungroupToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
