@@ -17,9 +17,11 @@ namespace PhanMemPaint
         ToolTip t1 = new ToolTip();
         Graphics gp;
         Color myColor;
+        SolidBrush myBrush;
+        Pen myPen, myEraser;
         Bitmap bm;
         Cursor tempCursor;
-        float penWidth, eraserWidth;
+        float penWidth;
 
         ColorDialog cd = new ColorDialog();
 
@@ -58,7 +60,12 @@ namespace PhanMemPaint
             gp.SmoothingMode = SmoothingMode.AntiAlias;
             myColor = Color.Black;
             penWidth = 1;
-            eraserWidth = 50;
+            myPen = new Pen(myColor, penWidth);
+            myBrush = new SolidBrush(myColor);
+            myEraser = new Pen(Color.White, 100);
+            myPen.LineJoin = LineJoin.Round;
+            myPen.StartCap = LineCap.Round;
+            myPen.EndCap = LineCap.Round;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -71,14 +78,6 @@ namespace PhanMemPaint
         private void nupPenWidth_Enter(object sender, EventArgs e)
         {
             nupPenWidth.TabStop = true;
-        }
-        private void nupEraserWidth_Leave(object sender, EventArgs e)
-        {
-            nupEraserWidth.TabStop = false;
-        }
-        private void nupEraserWidth_Enter(object sender, EventArgs e)
-        {
-            nupEraserWidth.TabStop = true;
         }
         private void btnLine_Click(object sender, EventArgs e)
         {
@@ -414,10 +413,6 @@ namespace PhanMemPaint
         {
             penWidth = (float)nupPenWidth.Value;
         }
-        private void nupEraserWidth_ValueChanged(object sender, EventArgs e)
-        {
-            eraserWidth = (float)nupEraserWidth.Value;
-        }
         private void btnColor_Click(object sender, EventArgs e)
         {
             btnColor.BackColor = Color.LightCoral;
@@ -704,7 +699,7 @@ namespace PhanMemPaint
                 else if (bEraser == true)
                 {
                     p1 = e.Location;
-                    gp.DrawLine(new Pen(Color.White, eraserWidth), p1, p2);
+                    gp.DrawLine(myEraser, p1, p2);
                     p2 = p1;
                 }
                 else currentShape.p2 = e.Location;
