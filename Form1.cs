@@ -41,8 +41,8 @@ namespace PhanMemPaint
 
         //Danh sách đương thẳng
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
-        //private List<clsDrawObject> selectedShapes = new List<clsDrawObject>();
-        private clsDrawObject selectedShape;
+        List<clsDrawObject> selectedShapes = new List<clsDrawObject>();
+        private clsDrawObject currentShape;
         private Point lastPoint;
         Point p1, p2;
 
@@ -403,34 +403,11 @@ namespace PhanMemPaint
         {
             btnColor.BackColor = Color.LightCoral;
 
-            this.bLine = false;
-            this.bEllipse = false;
-            this.bFilledEllipse = false;
-            this.bRect = false;
-            this.bFilledRect = false;
-            this.bCircle = false;
-            this.bFilledCircle = false;
-            this.bArc = false;
-
-            this.bPencil = false;
-            this.bEraser = false;
-            this.bSelect = false;
-
-            btnLine.BackColor = Color.White;
-            btnEllipse.BackColor = Color.White;
-            btnFilledEllipse.BackColor = Color.White;
-            btnRect.BackColor = Color.White;
-            btnFilledRect.BackColor = Color.White;
-            btnCircle.BackColor = Color.White;
-            btnFilledCircle.BackColor = Color.White;
-            btnArc.BackColor = Color.White;
-
-            btnPencil.BackColor = Color.Pink;
-            btnEraser.BackColor = Color.Pink;
-            btnSelect.BackColor = Color.Pink;
-
-            cd.ShowDialog();
-            myColor = cd.Color;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                btnColor.BackColor = Color.Pink;
+                myColor = cd.Color;
+            }
         }
         private void btnPencil_MouseHover(object sender, EventArgs e)
         {
@@ -570,23 +547,26 @@ namespace PhanMemPaint
             foreach (var shape in lstObject)
             {
                 shape.Draw(e.Graphics);
-                if (bSelect == true && selectedShape != null)
+                if (bSelect == true && selectedShapes.Any() == true)
                 {
-                    //4 corner
-                    Rectangle ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
-                    Rectangle rtResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
-                    Rectangle lbResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
-                    Rectangle rbResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
+                    foreach (var selectedShape in selectedShapes)
+                    {
+                        //4 corner
+                        Rectangle ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                        Rectangle rtResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                        Rectangle lbResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
+                        Rectangle rbResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
 
-                    e.Graphics.FillEllipse(Brushes.SlateGray, ltResizeHandleRect);
-                    e.Graphics.FillEllipse(Brushes.SlateGray, rtResizeHandleRect);
-                    e.Graphics.FillEllipse(Brushes.SlateGray, lbResizeHandleRect);
-                    e.Graphics.FillEllipse(Brushes.SlateGray, rbResizeHandleRect);
+                        e.Graphics.FillEllipse(Brushes.SlateGray, ltResizeHandleRect);
+                        e.Graphics.FillEllipse(Brushes.SlateGray, rtResizeHandleRect);
+                        e.Graphics.FillEllipse(Brushes.SlateGray, lbResizeHandleRect);
+                        e.Graphics.FillEllipse(Brushes.SlateGray, rbResizeHandleRect);
 
-                    //Border line
-                    Pen borderPen = new Pen(Color.SlateGray, 1);
-                    borderPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                    e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, selectedShape.Size.Width, selectedShape.Size.Height));
+                        //Border line
+                        Pen borderPen = new Pen(Color.SlateGray, 1);
+                        borderPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                        e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, selectedShape.Size.Width, selectedShape.Size.Height));
+                    }
                 }
             }
         }
@@ -604,17 +584,31 @@ namespace PhanMemPaint
 
                     if (shape.Contains(e.Location))
                     {
-                        selectedShape = shape;
                         if (e.Button == MouseButtons.Right)
                         {
                             contextMenuStrip1.Show(this, e.Location);
                         }
+                        if (Control.ModifierKeys == Keys.Control)
+                        {
+                            isCtrlKeyPressed = true;
+                            selectedShapes.Add(shape);
+                        }
+                        if (isCtrlKeyPressed == false)
+                        {
+                            selectedShapes.Clear();
+                            selectedShapes.Add(shape);
+                        }
                         break;
+                    }
+                    else
+                    {
+                        selectedShapes.Clear();
+                        isCtrlKeyPressed = false;
                     }
                     //Top left corner
                     if (ltResizeHandleRect.Contains(e.Location))
                     {
-                        selectedShape = shape;
+                        currentShape = shape;
                         resizeHandleStartPoint = new Point(shape.p1.X, shape.p1.Y);
 
                         pbMain.Cursor = Cursors.SizeNWSE;
@@ -623,7 +617,7 @@ namespace PhanMemPaint
                     //Top right corner
                     if (rtResizeHandleRect.Contains(e.Location))
                     {
-                        selectedShape = shape;
+                        currentShape = shape;
                         resizeHandleStartPoint = new Point(shape.p1.X + shape.Size.Width, shape.p1.Y);
 
                         pbMain.Cursor = Cursors.SizeNESW;
@@ -632,7 +626,7 @@ namespace PhanMemPaint
                     //Bottom left corner
                     if (lbResizeHandleRect.Contains(e.Location))
                     {
-                        selectedShape = shape;
+                        currentShape = shape;
                         resizeHandleStartPoint = new Point(shape.p1.X, shape.p1.Y + shape.Size.Height);
 
                         pbMain.Cursor = Cursors.SizeNESW;
@@ -641,7 +635,7 @@ namespace PhanMemPaint
                     //Bottom right corner
                     if (rbResizeHandleRect.Contains(e.Location))
                     {
-                        selectedShape = shape;
+                        currentShape = shape;
                         resizeHandleStartPoint = new Point(shape.p1.X + shape.Size.Width, shape.p1.Y + shape.Size.Height);
 
                         pbMain.Cursor = Cursors.SizeNWSE;
@@ -654,24 +648,24 @@ namespace PhanMemPaint
                 isDrawing = true;
                 p2 = e.Location;
             }
-            else if (selectedShape == null)
+            else if (selectedShapes.Any() == false)
             {
                 isDrawing = true;
                 if (bLine == true)
-                    selectedShape = new clsLine { Color = myColor, p1 = e.Location };
+                    currentShape = new clsLine { Color = myColor, p1 = e.Location };
                 if (bEllipse == true)
-                    selectedShape = new clsEllipse { Color = myColor, p1 = e.Location };
+                    currentShape = new clsEllipse { Color = myColor, p1 = e.Location };
                 if (bFilledEllipse == true)
-                    selectedShape = new clsFilledEllipse { Color = myColor, p1 = e.Location };
+                    currentShape = new clsFilledEllipse { Color = myColor, p1 = e.Location };
                 if (bRect == true)
-                    selectedShape = new clsRect { Color = myColor, p1 = e.Location };
+                    currentShape = new clsRect { Color = myColor, p1 = e.Location };
                 if (bFilledRect == true)
-                    selectedShape = new clsFilledRect { Color = myColor, p1 = e.Location };
+                    currentShape = new clsFilledRect { Color = myColor, p1 = e.Location };
                 if (bCircle == true)
-                    selectedShape = new clsCircle { Color = myColor, p1 = e.Location };
+                    currentShape = new clsCircle { Color = myColor, p1 = e.Location };
                 if (bFilledCircle == true)
-                    selectedShape = new clsFilledCircle { Color = myColor, p1 = e.Location };
-                lstObject.Add(selectedShape);
+                    currentShape = new clsFilledCircle { Color = myColor, p1 = e.Location };
+                lstObject.Add(currentShape);
             }
         }
         private void pbMain_MouseMove(object sender, MouseEventArgs e)
@@ -690,34 +684,41 @@ namespace PhanMemPaint
                     gp.DrawLine(myEraser, p1, p2);
                     p2 = p1;
                 }
-                else selectedShape.p2 = e.Location;
+                else currentShape.p2 = e.Location;
             }
-            else if (bSelect == true && selectedShape != null)
+            else if (bSelect == true)
             {
-                int dx = e.Location.X - lastPoint.X;
-                int dy = e.Location.Y - lastPoint.Y;
-                lastPoint = e.Location;
-
-                if (e.Button == MouseButtons.Left && selectedShape.Contains(e.Location) && resizeHandleStartPoint == Point.Empty)
+                if (selectedShapes.Any() == true)
                 {
-                    pbMain.Cursor = Cursors.SizeAll;
-                    selectedShape.Move(dx, dy);
-                    pbMain.Refresh();
-                }
-                else if (resizeHandleStartPoint != Point.Empty)
-                {
-                    selectedShape.p1.X = selectedShape.p1.X + dx;
-                    selectedShape.p1.Y = selectedShape.p1.Y + dy;
-                    pbMain.Refresh();
+                    int dx = e.Location.X - lastPoint.X;
+                    int dy = e.Location.Y - lastPoint.Y;
+                    lastPoint = e.Location;
+                    if (e.Button == MouseButtons.Left && resizeHandleStartPoint == Point.Empty)
+                    {
+                        foreach (var selectedShape in selectedShapes)
+                        {
+                            pbMain.Cursor = Cursors.SizeAll;
+                            selectedShape.Move(dx, dy);
+                        }
+                    }
+                    else if (resizeHandleStartPoint != Point.Empty)
+                    {
+                        foreach (var selectedShape in selectedShapes)
+                        {
+                            selectedShape.p1.X = selectedShape.p1.X + dx;
+                            selectedShape.p1.Y = selectedShape.p1.Y + dy;
+                        }
+                    }
                 }
             }
             pbMain.Refresh();
         }
         private void pbMain_MouseUp(object sender, MouseEventArgs e)
         {
-            if (isDrawing == true)
+            if (isDrawing == true || bSelect == false)
             {
-                selectedShape = null;
+                currentShape = null;
+                selectedShapes.Clear();
                 isDrawing = false;
             }
             resizeHandleStartPoint = Point.Empty;
