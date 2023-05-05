@@ -21,6 +21,7 @@ namespace PhanMemPaint
         Pen myPen, myEraser;
         Bitmap bm;
         Cursor tempCursor;
+        float penWidth;
 
         ColorDialog cd = new ColorDialog();
 
@@ -58,7 +59,8 @@ namespace PhanMemPaint
             pbMain.Image = bm;
             gp.SmoothingMode = SmoothingMode.AntiAlias;
             myColor = Color.Black;
-            myPen = new Pen(myColor);
+            penWidth = 1;
+            myPen = new Pen(myColor, penWidth);
             myBrush = new SolidBrush(myColor);
             myEraser = new Pen(Color.White, 100);
             myPen.LineJoin = LineJoin.Round;
@@ -68,6 +70,14 @@ namespace PhanMemPaint
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+        private void nupPenWidth_Leave(object sender, EventArgs e)
+        {
+            nupPenWidth.TabStop = false;
+        }
+        private void nupPenWidth_Enter(object sender, EventArgs e)
+        {
+            nupPenWidth.TabStop = true;
         }
         private void btnLine_Click(object sender, EventArgs e)
         {
@@ -399,6 +409,10 @@ namespace PhanMemPaint
             btnEraser.BackColor = Color.Pink;
             btnColor.BackColor = Color.Pink;
         }
+        private void nupPenWidth_ValueChanged(object sender, EventArgs e)
+        {
+            penWidth = (float)nupPenWidth.Value;
+        }
         private void btnColor_Click(object sender, EventArgs e)
         {
             btnColor.BackColor = Color.LightCoral;
@@ -656,17 +670,17 @@ namespace PhanMemPaint
             {
                 isDrawing = true;
                 if (bLine == true)
-                    currentShape = new clsLine { Color = myColor, p1 = e.Location };
+                    currentShape = new clsLine { Color = myColor, PenWidth = penWidth, p1 = e.Location };
                 if (bEllipse == true)
-                    currentShape = new clsEllipse { Color = myColor, p1 = e.Location };
+                    currentShape = new clsEllipse { Color = myColor, PenWidth = penWidth, p1 = e.Location };
                 if (bFilledEllipse == true)
                     currentShape = new clsFilledEllipse { Color = myColor, p1 = e.Location };
                 if (bRect == true)
-                    currentShape = new clsRect { Color = myColor, p1 = e.Location };
+                    currentShape = new clsRect { Color = myColor, PenWidth = penWidth, p1 = e.Location };
                 if (bFilledRect == true)
                     currentShape = new clsFilledRect { Color = myColor, p1 = e.Location };
                 if (bCircle == true)
-                    currentShape = new clsCircle { Color = myColor, p1 = e.Location };
+                    currentShape = new clsCircle { Color = myColor, PenWidth = penWidth, p1 = e.Location };
                 if (bFilledCircle == true)
                     currentShape = new clsFilledCircle { Color = myColor, p1 = e.Location };
                 lstObject.Add(currentShape);
@@ -679,7 +693,7 @@ namespace PhanMemPaint
                 if (bPencil == true)
                 {
                     p1 = e.Location;
-                    gp.DrawLine(new Pen(myColor), p1, p2);
+                    gp.DrawLine(new Pen(myColor, penWidth), p1, p2);
                     p2 = p1;
                 }
                 else if (bEraser == true)
@@ -735,6 +749,7 @@ namespace PhanMemPaint
         public Point p2;
         public Size Size;
         public Color Color { get; set; }
+        public float PenWidth { get; set; }
         public abstract void Draw(Graphics myGp);
         public virtual void Move(int dx, int dy)
         {
@@ -750,7 +765,7 @@ namespace PhanMemPaint
     {
         public override void Draw(Graphics myGp)
         {
-            using (Pen myPen = new Pen(Color))
+            using (Pen myPen = new Pen(Color, PenWidth))
             {
                 myGp.DrawLine(myPen, p1, p2);
             }
@@ -767,7 +782,7 @@ namespace PhanMemPaint
         {
             Size.Width = Math.Abs(p2.X - p1.X);
             Size.Height = Math.Abs(p2.Y - p1.Y);
-            using (Pen myPen = new Pen(Color))
+            using (Pen myPen = new Pen(Color, PenWidth))
             {
                 myGp.DrawEllipse(myPen, new Rectangle(p1.X, p1.Y, Size.Width, Size.Height));
             }
@@ -811,7 +826,7 @@ namespace PhanMemPaint
         {
             Size.Width = Math.Abs(p2.X - p1.X);
             Size.Height = Math.Abs(p2.Y - p1.Y);
-            using (Pen myPen = new Pen(Color))
+            using (Pen myPen = new Pen(Color, PenWidth))
             {
                 myGp.DrawRectangle(myPen, new Rectangle(p1.X, p1.Y, Size.Width, Size.Height));
             }
@@ -849,7 +864,7 @@ namespace PhanMemPaint
             Size.Height = Math.Abs(p2.Y - p1.Y);
             int diameter;
             diameter = Math.Min(Size.Width, Size.Height);
-            using (Pen myPen = new Pen(Color))
+            using (Pen myPen = new Pen(Color, PenWidth))
             {
                 myGp.DrawEllipse(myPen, new Rectangle(p1.X, p1.Y, diameter, diameter));
             }
