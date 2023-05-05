@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            nupEraserWidth = new NumericUpDown();
+            label3 = new Label();
             label2 = new Label();
             nupPenWidth = new NumericUpDown();
             btnColor = new Button();
@@ -57,6 +59,7 @@
             ungroupToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nupEraserWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nupPenWidth).BeginInit();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -67,6 +70,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Pink;
+            panel1.Controls.Add(nupEraserWidth);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(nupPenWidth);
             panel1.Controls.Add(btnColor);
@@ -80,10 +85,30 @@
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
             // 
+            // nupEraserWidth
+            // 
+            nupEraserWidth.Location = new Point(71, 357);
+            nupEraserWidth.Name = "nupEraserWidth";
+            nupEraserWidth.Size = new Size(60, 23);
+            nupEraserWidth.TabIndex = 13;
+            nupEraserWidth.Value = new decimal(new int[] { 50, 0, 0, 0 });
+            nupEraserWidth.ValueChanged += nupEraserWidth_ValueChanged;
+            nupEraserWidth.Enter += nupEraserWidth_Enter;
+            nupEraserWidth.Leave += nupEraserWidth_Leave;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(67, 339);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 15);
+            label3.TabIndex = 12;
+            label3.Text = "Eraser Width";
+            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 304);
+            label2.Location = new Point(69, 295);
             label2.Name = "label2";
             label2.Size = new Size(62, 15);
             label2.TabIndex = 2;
@@ -91,14 +116,14 @@
             // 
             // nupPenWidth
             // 
-            nupPenWidth.Location = new Point(6, 322);
+            nupPenWidth.Location = new Point(71, 313);
             nupPenWidth.Name = "nupPenWidth";
             nupPenWidth.Size = new Size(60, 23);
             nupPenWidth.TabIndex = 2;
             nupPenWidth.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nupPenWidth.ValueChanged += nupPenWidth_ValueChanged;
-            nupPenWidth.Leave += nupPenWidth_Leave;
             nupPenWidth.Enter += nupPenWidth_Enter;
+            nupPenWidth.Leave += nupPenWidth_Leave;
             // 
             // btnColor
             // 
@@ -108,7 +133,7 @@
             btnColor.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             btnColor.FlatStyle = FlatStyle.Flat;
             btnColor.Image = Properties.Resources.ColorPalletteIcon;
-            btnColor.Location = new Point(80, 225);
+            btnColor.Location = new Point(5, 313);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(60, 60);
             btnColor.TabIndex = 11;
@@ -404,6 +429,7 @@
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nupEraserWidth).EndInit();
             ((System.ComponentModel.ISupportInitialize)nupPenWidth).EndInit();
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
@@ -441,5 +467,7 @@
         private ToolStripMenuItem deleteToolStripMenuItem;
         private Label label2;
         private NumericUpDown nupPenWidth;
+        private NumericUpDown nupEraserWidth;
+        private Label label3;
     }
 }
