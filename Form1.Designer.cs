@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            label2 = new Label();
+            nupPenWidth = new NumericUpDown();
             btnColor = new Button();
             btnSelect = new Button();
             btnEraser = new Button();
@@ -55,6 +57,7 @@
             ungroupToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nupPenWidth).BeginInit();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
@@ -64,6 +67,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Pink;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(nupPenWidth);
             panel1.Controls.Add(btnColor);
             panel1.Controls.Add(btnSelect);
             panel1.Controls.Add(btnEraser);
@@ -74,6 +79,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 304);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Pen Width";
+            // 
+            // nupPenWidth
+            // 
+            nupPenWidth.Location = new Point(6, 322);
+            nupPenWidth.Name = "nupPenWidth";
+            nupPenWidth.Size = new Size(60, 23);
+            nupPenWidth.TabIndex = 2;
+            nupPenWidth.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nupPenWidth.ValueChanged += nupPenWidth_ValueChanged;
+            nupPenWidth.Leave += nupPenWidth_Leave;
+            nupPenWidth.Enter += nupPenWidth_Enter;
             // 
             // btnColor
             // 
@@ -352,19 +377,19 @@
             // groupToolStripMenuItem
             // 
             groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            groupToolStripMenuItem.Size = new Size(180, 22);
+            groupToolStripMenuItem.Size = new Size(121, 22);
             groupToolStripMenuItem.Text = "Group";
             // 
             // ungroupToolStripMenuItem
             // 
             ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
-            ungroupToolStripMenuItem.Size = new Size(180, 22);
+            ungroupToolStripMenuItem.Size = new Size(121, 22);
             ungroupToolStripMenuItem.Text = "Ungroup";
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(180, 22);
+            deleteToolStripMenuItem.Size = new Size(121, 22);
             deleteToolStripMenuItem.Text = "Delete";
             // 
             // Form1
@@ -378,17 +403,14 @@
             Name = "Form1";
             Text = "Form1";
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nupPenWidth).EndInit();
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
-        }
-
-        private void PbMain_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -417,5 +439,7 @@
         private ToolStripMenuItem groupToolStripMenuItem;
         private ToolStripMenuItem ungroupToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private Label label2;
+        private NumericUpDown nupPenWidth;
     }
 }
