@@ -591,7 +591,11 @@ namespace PhanMemPaint
                         if (Control.ModifierKeys == Keys.Control)
                         {
                             isCtrlKeyPressed = true;
-                            selectedShapes.Add(shape);
+                            if (selectedShapes.Contains(shape))
+                            {
+                                selectedShapes.Remove(shape);
+                            }
+                            else selectedShapes.Add(shape);
                         }
                         if (isCtrlKeyPressed == false)
                         {
