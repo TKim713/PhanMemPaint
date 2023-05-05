@@ -386,6 +386,11 @@
             ResumeLayout(false);
         }
 
+        private void PbMain_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private Panel panel1;
