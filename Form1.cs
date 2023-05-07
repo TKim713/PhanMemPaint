@@ -21,7 +21,7 @@ namespace PhanMemPaint
         Pen myPen, myEraser;
         Bitmap bm;
         Cursor tempCursor;
-        float penWidth;
+        float penWidth, eraserWidth;
 
         ColorDialog cd = new ColorDialog();
 
@@ -61,6 +61,7 @@ namespace PhanMemPaint
             gp.SmoothingMode = SmoothingMode.AntiAlias;
             myColor = Color.Black;
             penWidth = 1;
+            eraserWidth = 50;
             myPen = new Pen(myColor, penWidth);
             myBrush = new SolidBrush(myColor);
             myEraser = new Pen(Color.White, 100);
@@ -79,6 +80,14 @@ namespace PhanMemPaint
         private void nupPenWidth_Enter(object sender, EventArgs e)
         {
             nupPenWidth.TabStop = true;
+        }
+        private void nupEraserWidth_Leave(object sender, EventArgs e)
+        {
+            nupEraserWidth.TabStop = false;
+        }
+        private void nupEraserWidth_Enter(object sender, EventArgs e)
+        {
+            nupEraserWidth.TabStop = true;
         }
         private void btnLine_Click(object sender, EventArgs e)
         {
@@ -648,7 +657,7 @@ namespace PhanMemPaint
                     if (bSelect == true && selectedShapes.Any() == true)
                     {
                         foreach (var selectedShape in selectedShapes)
-                        {/*
+                        {
                             if (selectedShape is clsLine)
                             {
                                 // tính toán điểm đầu và cuối của đường thẳng
@@ -663,7 +672,7 @@ namespace PhanMemPaint
                                 e.Graphics.FillEllipse(Brushes.SlateGray, p2ResizeHandleRect);
                             }
                             else
-                            {    */
+                            {
                                 //4 corner
                                 Rectangle ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
                                 Rectangle rtResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
@@ -679,7 +688,8 @@ namespace PhanMemPaint
                                 Pen borderPen = new Pen(Color.SlateGray, 1);
                                 borderPen.DashStyle = DashStyle.Dot;
                                 e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, selectedShape.Size.Width, selectedShape.Size.Height));
-                            //}
+                                //}
+                            }
                         }
                     }
                 }
@@ -718,7 +728,7 @@ namespace PhanMemPaint
                     {
                         selectedShapes.Clear();
                         isCtrlKeyPressed = false;
-                    }/*
+                    }
                     if (shape is clsLine)
                     {
                         // tính toán điểm đầu và cuối của đường thẳng
@@ -789,7 +799,7 @@ namespace PhanMemPaint
                             pbMain.Cursor = Cursors.SizeNWSE;
                             break;
                         }
-                    }*/
+                    }
                 }
             }
             else if (bPencil == true || bEraser == true)
@@ -909,7 +919,7 @@ namespace PhanMemPaint
             }
         }
 
-    };
+    };/*
     public abstract class clsDrawObject
     {
         public Point p1;
@@ -1085,5 +1095,5 @@ namespace PhanMemPaint
             int dy = point.Y - centerY;
             return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1;
         }
-    };
+    };*/
 }
