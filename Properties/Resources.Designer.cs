@@ -153,6 +153,16 @@ namespace PhanMemPaint.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FillIcon {
+            get {
+                object obj = ResourceManager.GetObject("FillIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LineIcon {
             get {
                 object obj = ResourceManager.GetObject("LineIcon", resourceCulture);
