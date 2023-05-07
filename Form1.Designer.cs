@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            picColor = new PictureBox();
+            btnFill = new Button();
             nupEraserWidth = new NumericUpDown();
             label3 = new Label();
             label2 = new Label();
@@ -59,6 +61,7 @@
             ungroupToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picColor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nupEraserWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nupPenWidth).BeginInit();
             panel3.SuspendLayout();
@@ -70,6 +73,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Pink;
+            panel1.Controls.Add(picColor);
+            panel1.Controls.Add(btnFill);
             panel1.Controls.Add(nupEraserWidth);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
@@ -85,9 +90,33 @@
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
             // 
+            // picColor
+            // 
+            picColor.BackColor = Color.Black;
+            picColor.Location = new Point(4, 357);
+            picColor.Name = "picColor";
+            picColor.Size = new Size(60, 19);
+            picColor.TabIndex = 2;
+            picColor.TabStop = false;
+            // 
+            // btnFill
+            // 
+            btnFill.BackColor = Color.Pink;
+            btnFill.FlatAppearance.BorderColor = Color.White;
+            btnFill.FlatAppearance.BorderSize = 2;
+            btnFill.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnFill.FlatStyle = FlatStyle.Flat;
+            btnFill.Image = Properties.Resources.FillIcon;
+            btnFill.Location = new Point(80, 225);
+            btnFill.Name = "btnFill";
+            btnFill.Size = new Size(60, 60);
+            btnFill.TabIndex = 14;
+            btnFill.UseVisualStyleBackColor = false;
+            btnFill.Click += btnFill_Click;
+            // 
             // nupEraserWidth
             // 
-            nupEraserWidth.Location = new Point(71, 357);
+            nupEraserWidth.Location = new Point(71, 353);
             nupEraserWidth.Name = "nupEraserWidth";
             nupEraserWidth.Size = new Size(60, 23);
             nupEraserWidth.TabIndex = 13;
@@ -99,7 +128,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(67, 339);
+            label3.Location = new Point(67, 335);
             label3.Name = "label3";
             label3.Size = new Size(73, 15);
             label3.TabIndex = 12;
@@ -108,7 +137,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(69, 295);
+            label2.Location = new Point(69, 291);
             label2.Name = "label2";
             label2.Size = new Size(62, 15);
             label2.TabIndex = 2;
@@ -116,7 +145,7 @@
             // 
             // nupPenWidth
             // 
-            nupPenWidth.Location = new Point(71, 313);
+            nupPenWidth.Location = new Point(71, 309);
             nupPenWidth.Name = "nupPenWidth";
             nupPenWidth.Size = new Size(60, 23);
             nupPenWidth.TabIndex = 2;
@@ -133,7 +162,7 @@
             btnColor.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             btnColor.FlatStyle = FlatStyle.Flat;
             btnColor.Image = Properties.Resources.ColorPalletteIcon;
-            btnColor.Location = new Point(5, 313);
+            btnColor.Location = new Point(4, 291);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(60, 60);
             btnColor.TabIndex = 11;
@@ -388,6 +417,7 @@
             pbMain.TabIndex = 1;
             pbMain.TabStop = false;
             pbMain.Paint += pbMain_Paint;
+            pbMain.MouseClick += pbMain_MouseClick;
             pbMain.MouseDown += pbMain_MouseDown;
             pbMain.MouseHover += pbMain_MouseHover;
             pbMain.MouseMove += pbMain_MouseMove;
@@ -429,6 +459,7 @@
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picColor).EndInit();
             ((System.ComponentModel.ISupportInitialize)nupEraserWidth).EndInit();
             ((System.ComponentModel.ISupportInitialize)nupPenWidth).EndInit();
             panel3.ResumeLayout(false);
@@ -469,5 +500,7 @@
         private NumericUpDown nupPenWidth;
         private NumericUpDown nupEraserWidth;
         private Label label3;
+        private Button btnFill;
+        private PictureBox picColor;
     }
 }
