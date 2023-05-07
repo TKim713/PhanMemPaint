@@ -621,6 +621,20 @@ namespace PhanMemPaint
         {
             if (bFill == true)
             {
+                if (lstObject.Any() == true)
+                {
+                    foreach (var shape in lstObject)
+                    {
+                        if (shape.Contains(e.Location))
+                        {
+                            Bitmap bmp = new Bitmap(pbMain.Width, pbMain.Height);
+                            shape.Fill(bmp, myColor);
+
+                            // Hiển thị bitmap lên PictureBox
+                            pbMain.Image = bmp;
+                        }
+                    }
+                }
                 Point point = set_point(pbMain, e.Location);
                 Fill(bm, point.X, point.Y, myColor);
             }
@@ -635,7 +649,7 @@ namespace PhanMemPaint
                     if (bSelect == true && selectedShapes.Any() == true)
                     {
                         foreach (var selectedShape in selectedShapes)
-                        {
+                        {/*
                             if (selectedShape is clsLine)
                             {
                                 // tính toán điểm đầu và cuối của đường thẳng
@@ -650,7 +664,7 @@ namespace PhanMemPaint
                                 e.Graphics.FillEllipse(Brushes.SlateGray, p2ResizeHandleRect);
                             }
                             else
-                            {    
+                            {    */
                                 //4 corner
                                 Rectangle ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
                                 Rectangle rtResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
@@ -666,7 +680,7 @@ namespace PhanMemPaint
                                 Pen borderPen = new Pen(Color.SlateGray, 1);
                                 borderPen.DashStyle = DashStyle.Dot;
                                 e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, selectedShape.Size.Width, selectedShape.Size.Height));
-                            }
+                            //}
                         }
                     }
                 }
@@ -705,7 +719,7 @@ namespace PhanMemPaint
                     {
                         selectedShapes.Clear();
                         isCtrlKeyPressed = false;
-                    }
+                    }/*
                     if (shape is clsLine)
                     {
                         // tính toán điểm đầu và cuối của đường thẳng
@@ -776,7 +790,7 @@ namespace PhanMemPaint
                             pbMain.Cursor = Cursors.SizeNWSE;
                             break;
                         }
-                    }
+                    }*/
                 }
             }
             else if (bPencil == true || bEraser == true)
@@ -912,6 +926,24 @@ namespace PhanMemPaint
 
             p2.X = p2.X + dx;
             p2.Y = p2.Y + dy;
+        }
+        public virtual void Fill(Bitmap bm, Color newClr)
+        {
+            int left = Math.Min(p1.X, p2.X);
+            int top = Math.Min(p1.Y, p2.Y);
+            int right = Math.Max(p1.X, p2.X);
+            int bottom = Math.Max(p1.Y, p2.Y);
+
+            for (int x = left; x < right; x++)
+            {
+                for (int y = top; y < bottom; y++)
+                {
+                    if (Contains(new Point(x, y)))
+                    {
+                        bm.SetPixel(x, y, newClr);
+                    }
+                }
+            }
         }
         public abstract bool Contains(Point point);
     };
