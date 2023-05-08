@@ -57,8 +57,6 @@ namespace PhanMemPaint
             pbMain = new PictureBox();
             colorDialog1 = new ColorDialog();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            groupToolStripMenuItem = new ToolStripMenuItem();
-            ungroupToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picColor).BeginInit();
@@ -151,8 +149,8 @@ namespace PhanMemPaint
             nupPenWidth.TabIndex = 2;
             nupPenWidth.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nupPenWidth.ValueChanged += nupPenWidth_ValueChanged;
-            nupPenWidth.Leave += nupPenWidth_Leave;
             nupPenWidth.Enter += nupPenWidth_Enter;
+            nupPenWidth.Leave += nupPenWidth_Leave;
             // 
             // btnColor
             // 
@@ -249,6 +247,7 @@ namespace PhanMemPaint
             btnFilledPolygon.Size = new Size(28, 28);
             btnFilledPolygon.TabIndex = 7;
             btnFilledPolygon.UseVisualStyleBackColor = true;
+            btnFilledPolygon.Click += btnFilledPolygon_Click;
             btnFilledPolygon.MouseLeave += btnFilledPolygon_MouseLeave;
             btnFilledPolygon.MouseHover += btnFilledPolygon_MouseHover;
             // 
@@ -293,6 +292,7 @@ namespace PhanMemPaint
             btnPolygon.Size = new Size(28, 28);
             btnPolygon.TabIndex = 6;
             btnPolygon.UseVisualStyleBackColor = true;
+            btnPolygon.Click += btnPolygon_Click;
             btnPolygon.MouseLeave += btnPolygon_MouseLeave;
             btnPolygon.MouseHover += btnPolygon_MouseHover;
             // 
@@ -425,26 +425,14 @@ namespace PhanMemPaint
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { groupToolStripMenuItem, ungroupToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(122, 70);
-            // 
-            // groupToolStripMenuItem
-            // 
-            groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            groupToolStripMenuItem.Size = new Size(121, 22);
-            groupToolStripMenuItem.Text = "Group";
-            // 
-            // ungroupToolStripMenuItem
-            // 
-            ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
-            ungroupToolStripMenuItem.Size = new Size(121, 22);
-            ungroupToolStripMenuItem.Text = "Ungroup";
+            contextMenuStrip1.Size = new Size(181, 48);
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(121, 22);
+            deleteToolStripMenuItem.Size = new Size(180, 22);
             deleteToolStripMenuItem.Text = "Delete";
             // 
             // Form1
@@ -493,8 +481,6 @@ namespace PhanMemPaint
         private Button btnColor;
         private ColorDialog colorDialog1;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem groupToolStripMenuItem;
-        private ToolStripMenuItem ungroupToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private Label label2;
         private NumericUpDown nupPenWidth;

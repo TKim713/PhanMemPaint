@@ -22,6 +22,7 @@ namespace PhanMemPaint
         Bitmap bm;
         Cursor tempCursor;
         float penWidth, eraserWidth;
+        int numSides;
 
         ColorDialog cd = new ColorDialog();
 
@@ -35,6 +36,8 @@ namespace PhanMemPaint
         bool bCircle = false;
         bool bFilledCircle = false;
         bool bArc = false;
+        bool bPolygon = false;
+        bool bFilledPolygon = false;
 
         bool bPencil = false;
         bool bEraser = false;
@@ -101,6 +104,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -114,6 +119,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -133,6 +140,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -146,6 +155,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -165,6 +176,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -178,6 +191,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -197,6 +212,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -210,6 +227,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -229,6 +248,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -242,6 +263,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -261,6 +284,8 @@ namespace PhanMemPaint
             this.bFilledRect = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -274,6 +299,8 @@ namespace PhanMemPaint
             btnFilledRect.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -293,6 +320,8 @@ namespace PhanMemPaint
             this.bFilledRect = false;
             this.bCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -306,6 +335,8 @@ namespace PhanMemPaint
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -325,6 +356,8 @@ namespace PhanMemPaint
             this.bFilledRect = false;
             this.bCircle = false;
             this.bFilledCircle = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -338,12 +371,128 @@ namespace PhanMemPaint
             btnFilledRect.BackColor = Color.White;
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
             btnSelect.BackColor = Color.Pink;
             btnColor.BackColor = Color.Pink;
             btnFill.BackColor = Color.Pink;
+        }
+        private void btnPolygon_Click(object sender, EventArgs e)
+        {
+            this.bPolygon = true;
+            btnPolygon.BackColor = Color.LightCoral;
+
+            this.bLine = false;
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+            this.bArc = false;
+            this.bFilledPolygon = false;
+
+            this.bPencil = false;
+            this.bEraser = false;
+            this.bSelect = false;
+            this.bFill = false;
+
+            btnLine.BackColor = Color.White;
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
+            btnSelect.BackColor = Color.Pink;
+            btnColor.BackColor = Color.Pink;
+            btnFill.BackColor = Color.Pink;
+
+            numSides = 0;
+            while (numSides <= 2) // Đảm bảo số cạnh nhập vào lớn hơn 2
+            {
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Nhập số cạnh của đa giác (>=3):", "Vẽ đa giác", "");
+                if (string.IsNullOrEmpty(input))
+                {
+                    this.bPolygon = false;
+                    btnPolygon.BackColor = Color.White;
+                    break;
+                }
+                if (int.TryParse(input, out numSides) == false)
+                {
+                    MessageBox.Show("Số cạnh phải là một số nguyên lớn hơn hoặc bằng 3.");
+                    continue;
+                }
+                if (numSides <= 2)
+                {
+                    MessageBox.Show("Số cạnh phải lớn hơn hoặc bằng 3.");
+                }
+            }
+        }
+        private void btnFilledPolygon_Click(object sender, EventArgs e)
+        {
+            this.bFilledPolygon = true;
+            btnFilledPolygon.BackColor = Color.LightCoral;
+
+            this.bLine = false;
+            this.bEllipse = false;
+            this.bFilledEllipse = false;
+            this.bRect = false;
+            this.bFilledRect = false;
+            this.bCircle = false;
+            this.bFilledCircle = false;
+            this.bArc = false;
+            this.bPolygon = false;
+
+            this.bPencil = false;
+            this.bEraser = false;
+            this.bSelect = false;
+            this.bFill = false;
+
+            btnLine.BackColor = Color.White;
+            btnEllipse.BackColor = Color.White;
+            btnFilledEllipse.BackColor = Color.White;
+            btnRect.BackColor = Color.White;
+            btnFilledRect.BackColor = Color.White;
+            btnCircle.BackColor = Color.White;
+            btnFilledCircle.BackColor = Color.White;
+            btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+
+            btnPencil.BackColor = Color.Pink;
+            btnEraser.BackColor = Color.Pink;
+            btnSelect.BackColor = Color.Pink;
+            btnColor.BackColor = Color.Pink;
+            btnFill.BackColor = Color.Pink;
+
+            numSides = 0;
+            while (numSides <= 2) // Đảm bảo số cạnh nhập vào lớn hơn 2
+            {
+                string input = Microsoft.VisualBasic.Interaction.InputBox("Nhập số cạnh của đa giác (>=3):", "Vẽ đa giác", "");
+                if (string.IsNullOrEmpty(input))
+                {
+                    this.bFilledPolygon = false;
+                    btnFilledPolygon.BackColor = Color.White;
+                    break;
+                }
+                if (int.TryParse(input, out numSides) == false)
+                {
+                    MessageBox.Show("Số cạnh phải là một số nguyên lớn hơn hoặc bằng 3.");
+                    continue;
+                }
+                if (numSides <= 2)
+                {
+                    MessageBox.Show("Số cạnh phải lớn hơn hoặc bằng 3.");
+                }
+            }
         }
         private void btnPencil_Click(object sender, EventArgs e)
         {
@@ -358,6 +507,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bEraser = false;
             this.bSelect = false;
@@ -371,6 +522,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnEraser.BackColor = Color.Pink;
             btnSelect.BackColor = Color.Pink;
@@ -390,6 +543,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bSelect = false;
@@ -403,6 +558,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnSelect.BackColor = Color.Pink;
@@ -422,6 +579,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -435,6 +594,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -462,6 +623,8 @@ namespace PhanMemPaint
             this.bCircle = false;
             this.bFilledCircle = false;
             this.bArc = false;
+            this.bPolygon = false;
+            this.bFilledPolygon = false;
 
             this.bPencil = false;
             this.bEraser = false;
@@ -475,6 +638,8 @@ namespace PhanMemPaint
             btnCircle.BackColor = Color.White;
             btnFilledCircle.BackColor = Color.White;
             btnArc.BackColor = Color.White;
+            btnPolygon.BackColor = Color.White;
+            btnFilledPolygon.BackColor = Color.White;
 
             btnPencil.BackColor = Color.Pink;
             btnEraser.BackColor = Color.Pink;
@@ -824,6 +989,12 @@ namespace PhanMemPaint
                     currentShape = new clsCircle { Color = myColor, PenWidth = penWidth, p1 = e.Location };
                 if (bFilledCircle == true)
                     currentShape = new clsFilledCircle { Color = myColor, p1 = e.Location };
+                if (bPolygon == true)
+                {
+                    currentShape = new clsPolygon { Color = myColor, PenWidth = penWidth, p1 = e.Location, numSides = numSides };
+                }
+                if (bFilledPolygon == true)
+                    currentShape = new clsFilledPolygon { Color = myColor, p1 = e.Location };
                 lstObject.Add(currentShape);
             }
         }
@@ -919,7 +1090,7 @@ namespace PhanMemPaint
             }
         }
 
-    };/*
+    };
     public abstract class clsDrawObject
     {
         public Point p1;
@@ -1087,13 +1258,103 @@ namespace PhanMemPaint
         }
         public override bool Contains(Point point)
         {
+            int r = Size.Width / 2;
+            int dx = point.X - (p1.X + r);
+            int dy = point.Y - (p1.Y + r);
+            return dx * dx + dy * dy < r * r;
+        }
+    };
+    public class clsPolygon : clsDrawObject
+    {
+        public int numSides;
+        public override void Draw(Graphics myGp)
+        {
+            Point[] points = new Point[numSides];
+
+            // Tính toán tọa độ cho đỉnh của polygon
             int centerX = (p1.X + p2.X) / 2;
             int centerY = (p1.Y + p2.Y) / 2;
-            int rx = Math.Abs(p2.X - p1.X) / 2;
-            int ry = Math.Abs(p2.Y - p1.Y) / 2;
-            int dx = point.X - centerX;
-            int dy = point.Y - centerY;
-            return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1;
+            double radius = Math.Sqrt(Math.Pow(centerX - p1.X, 2) + Math.Pow(centerY - p1.Y, 2));
+            for (int i = 0; i < numSides; i++)
+            {
+                points[i].X = (int)(centerX + radius * Math.Sin(i * 2 * Math.PI / numSides));
+                points[i].Y = (int)(centerY - radius * Math.Cos(i * 2 * Math.PI / numSides));
+            }
+            using (Pen myPen = new Pen(Color, PenWidth))
+            {
+                myGp.DrawPolygon(myPen, points);
+            }
         }
-    };*/
+        public override bool Contains(Point point)
+        {
+            Point[] points = new Point[numSides];
+
+            // Tính toán tọa độ cho đỉnh của polygon
+            int centerX = (p1.X + p2.X) / 2;
+            int centerY = (p1.Y + p2.Y) / 2;
+            double radius = Math.Sqrt(Math.Pow(centerX - p1.X, 2) + Math.Pow(centerY - p1.Y, 2));
+            for (int i = 0; i < numSides; i++)
+            {
+                points[i].X = (int)(centerX + radius * Math.Sin(i * 2 * Math.PI / numSides));
+                points[i].Y = (int)(centerY - radius * Math.Cos(i * 2 * Math.PI / numSides));
+            }
+            // Tìm tọa độ của điểm trái trên cùng và điểm phải dưới cùng trong khung chữ nhật
+            int left = points.Min(p => p.X);
+            int top = points.Min(p => p.Y);
+            int right = points.Max(p => p.X);
+            int bottom = points.Max(p => p.Y);
+
+            Rectangle rect = new Rectangle(left, top, right - left, bottom - top);
+
+            return rect.Contains(point);
+        }
+
+    };
+    public class clsFilledPolygon : clsDrawObject
+    {
+        public int numSides;
+        public override void Draw(Graphics myGp)
+        {
+            Point[] points = new Point[numSides];
+
+            // Tính toán tọa độ cho đỉnh của polygon
+            int centerX = (p1.X + p2.X) / 2;
+            int centerY = (p1.Y + p2.Y) / 2;
+            double radius = Math.Sqrt(Math.Pow(centerX - p1.X, 2) + Math.Pow(centerY - p1.Y, 2));
+            for (int i = 0; i < numSides; i++)
+            {
+                points[i].X = (int)(centerX + radius * Math.Sin(i * 2 * Math.PI / numSides));
+                points[i].Y = (int)(centerY - radius * Math.Cos(i * 2 * Math.PI / numSides));
+            }
+            using (Brush myBrush = new SolidBrush(Color))
+            {
+                myGp.FillPolygon(myBrush, points);
+            }
+        }
+        public override bool Contains(Point point)
+        {
+            Point[] points = new Point[numSides];
+
+            // Tính toán tọa độ cho đỉnh của polygon
+            int centerX = (p1.X + p2.X) / 2;
+            int centerY = (p1.Y + p2.Y) / 2;
+            double radius = Math.Sqrt(Math.Pow(centerX - p1.X, 2) + Math.Pow(centerY - p1.Y, 2));
+            for (int i = 0; i < numSides; i++)
+            {
+                points[i].X = (int)(centerX + radius * Math.Sin(i * 2 * Math.PI / numSides));
+                points[i].Y = (int)(centerY - radius * Math.Cos(i * 2 * Math.PI / numSides));
+            }
+
+            // Tìm tọa độ của điểm trái trên cùng và điểm phải dưới cùng trong khung chữ nhật
+            int left = points.Min(p => p.X);
+            int top = points.Min(p => p.Y);
+            int right = points.Max(p => p.X);
+            int bottom = points.Max(p => p.Y);
+
+            Rectangle rect = new Rectangle(left, top, right - left, bottom - top);
+
+            return rect.Contains(point);
+        }
+
+    };
 }
