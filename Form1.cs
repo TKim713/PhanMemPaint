@@ -22,7 +22,7 @@ namespace PhanMemPaint
         Bitmap bm;
         Cursor tempCursor;
         float penWidth, eraserWidth;
-        int numSides;
+        int numSides, diameter;
 
         ColorDialog cd = new ColorDialog();
 
@@ -908,12 +908,26 @@ namespace PhanMemPaint
                             }
                             else
                             {
-                                //4 corner
-                                Rectangle ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
-                                Rectangle rtResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
-                                Rectangle lbResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
-                                Rectangle rbResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
-
+                                Rectangle ltResizeHandleRect;
+                                Rectangle rtResizeHandleRect;
+                                Rectangle lbResizeHandleRect;
+                                Rectangle rbResizeHandleRect;
+                                if (selectedShape is clsCircle || selectedShape is clsFilledCircle)
+                                {
+                                    diameter = Math.Min(selectedShape.Size.Width, selectedShape.Size.Height);
+                                    ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                                    rtResizeHandleRect = new Rectangle(selectedShape.p1.X + diameter - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                                    lbResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y + diameter - handleSize / 2, handleSize, handleSize);
+                                    rbResizeHandleRect = new Rectangle(selectedShape.p1.X + diameter - handleSize / 2, selectedShape.p1.Y + diameter - handleSize / 2, handleSize, handleSize);
+                                }
+                                else
+                                {
+                                    //4 corner
+                                    ltResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                                    rtResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y - handleSize / 2, handleSize, handleSize);
+                                    lbResizeHandleRect = new Rectangle(selectedShape.p1.X - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
+                                    rbResizeHandleRect = new Rectangle(selectedShape.p1.X + selectedShape.Size.Width - handleSize / 2, selectedShape.p1.Y + selectedShape.Size.Height - handleSize / 2, handleSize, handleSize);
+                                }
                                 e.Graphics.FillEllipse(Brushes.SlateGray, ltResizeHandleRect);
                                 e.Graphics.FillEllipse(Brushes.SlateGray, rtResizeHandleRect);
                                 e.Graphics.FillEllipse(Brushes.SlateGray, lbResizeHandleRect);
@@ -922,8 +936,9 @@ namespace PhanMemPaint
                                 //Border line
                                 Pen borderPen = new Pen(Color.SlateGray, 1);
                                 borderPen.DashStyle = DashStyle.Dot;
-                                e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, selectedShape.Size.Width, selectedShape.Size.Height));
-                                //}
+                                if (selectedShape is clsCircle || selectedShape is clsFilledCircle)
+                                    e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, diameter, diameter));
+                                else e.Graphics.DrawRectangle(borderPen, new Rectangle(selectedShape.p1.X, selectedShape.p1.Y, selectedShape.Size.Width, selectedShape.Size.Height));
                             }
                         }
                     }
@@ -1330,11 +1345,11 @@ namespace PhanMemPaint
     };
     public class clsCircle : clsDrawObject
     {
+        public int diameter;
         public override void Draw(Graphics myGp)
         {
             Size.Width = Math.Abs(p2.X - p1.X);
             Size.Height = Math.Abs(p2.Y - p1.Y);
-            int diameter;
             diameter = Math.Min(Size.Width, Size.Height);
             using (Pen myPen = new Pen(Color, PenWidth))
             {
@@ -1343,7 +1358,7 @@ namespace PhanMemPaint
         }
         public override bool Contains(Point point)
         {
-            int r = Size.Width / 2;
+            int r = diameter / 2;
             int dx = point.X - (p1.X + r);
             int dy = point.Y - (p1.Y + r);
             return dx * dx + dy * dy < r * r;
@@ -1351,11 +1366,11 @@ namespace PhanMemPaint
     };
     public class clsFilledCircle : clsDrawObject
     {
+        public int diameter;
         public override void Draw(Graphics myGp)
         {
             Size.Width = Math.Abs(p2.X - p1.X);
             Size.Height = Math.Abs(p2.Y - p1.Y);
-            int diameter;
             diameter = Math.Min(Size.Width, Size.Height);
             using (Brush myBrush = new SolidBrush(Color))
             {
@@ -1364,7 +1379,7 @@ namespace PhanMemPaint
         }
         public override bool Contains(Point point)
         {
-            int r = Size.Width / 2;
+            int r = diameter / 2;
             int dx = point.X - (p1.X + r);
             int dy = point.Y - (p1.Y + r);
             return dx * dx + dy * dy < r * r;
