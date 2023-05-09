@@ -31,6 +31,7 @@ namespace PhanMemPaint
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btnTrash = new Button();
             picColor = new PictureBox();
             btnFill = new Button();
             nupEraserWidth = new NumericUpDown();
@@ -57,8 +58,9 @@ namespace PhanMemPaint
             pbMain = new PictureBox();
             colorDialog1 = new ColorDialog();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            copyToolStripMenuItem = new ToolStripMenuItem();
+            pasteToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
-            btnTrash = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picColor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nupEraserWidth).BeginInit();
@@ -89,6 +91,22 @@ namespace PhanMemPaint
             panel1.Name = "panel1";
             panel1.Size = new Size(143, 435);
             panel1.TabIndex = 0;
+            // 
+            // btnTrash
+            // 
+            btnTrash.BackgroundImage = Properties.Resources.TrashCanIcon;
+            btnTrash.BackgroundImageLayout = ImageLayout.Stretch;
+            btnTrash.FlatAppearance.BorderSize = 0;
+            btnTrash.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnTrash.FlatStyle = FlatStyle.Flat;
+            btnTrash.Location = new Point(105, 391);
+            btnTrash.Name = "btnTrash";
+            btnTrash.Size = new Size(30, 30);
+            btnTrash.TabIndex = 15;
+            btnTrash.UseVisualStyleBackColor = false;
+            btnTrash.Click += btnTrash_Click;
+            btnTrash.MouseLeave += btnTrash_MouseLeave;
+            btnTrash.MouseHover += btnTrash_MouseHover;
             // 
             // picColor
             // 
@@ -427,32 +445,31 @@ namespace PhanMemPaint
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { copyToolStripMenuItem, pasteToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(108, 26);
+            contextMenuStrip1.Size = new Size(108, 70);
             contextMenuStrip1.ItemClicked += contextMenuStrip1_ItemClicked;
+            // 
+            // copyToolStripMenuItem
+            // 
+            copyToolStripMenuItem.Enabled = false;
+            copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            copyToolStripMenuItem.Size = new Size(107, 22);
+            copyToolStripMenuItem.Text = "Copy";
+            // 
+            // pasteToolStripMenuItem
+            // 
+            pasteToolStripMenuItem.Enabled = false;
+            pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            pasteToolStripMenuItem.Size = new Size(107, 22);
+            pasteToolStripMenuItem.Text = "Paste";
             // 
             // deleteToolStripMenuItem
             // 
+            deleteToolStripMenuItem.Enabled = false;
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             deleteToolStripMenuItem.Size = new Size(107, 22);
             deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // btnTrash
-            // 
-            btnTrash.BackgroundImage = Properties.Resources.TrashCanIcon;
-            btnTrash.BackgroundImageLayout = ImageLayout.Stretch;
-            btnTrash.FlatAppearance.BorderSize = 0;
-            btnTrash.FlatAppearance.MouseOverBackColor = Color.LightCoral;
-            btnTrash.FlatStyle = FlatStyle.Flat;
-            btnTrash.Location = new Point(105, 391);
-            btnTrash.Name = "btnTrash";
-            btnTrash.Size = new Size(30, 30);
-            btnTrash.TabIndex = 15;
-            btnTrash.UseVisualStyleBackColor = false;
-            btnTrash.Click += btnTrash_Click;
-            btnTrash.MouseLeave += btnTrash_MouseLeave;
-            btnTrash.MouseHover += btnTrash_MouseHover;
             // 
             // Form1
             // 
@@ -500,7 +517,7 @@ namespace PhanMemPaint
         private Button btnColor;
         private ColorDialog colorDialog1;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripMenuItem copyToolStripMenuItem;
         private Label label2;
         private NumericUpDown nupPenWidth;
         private NumericUpDown nupEraserWidth;
@@ -508,5 +525,7 @@ namespace PhanMemPaint
         private Button btnFill;
         private PictureBox picColor;
         private Button btnTrash;
+        private ToolStripMenuItem pasteToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

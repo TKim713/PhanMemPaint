@@ -44,10 +44,15 @@ namespace PhanMemPaint
         bool bSelect = false;
         bool bFill = false;
 
-        //Danh sách đương thẳng
+        // Danh sách các hình
         List<clsDrawObject> lstObject = new List<clsDrawObject>();
+        // Danh sách hình được chọn
         List<clsDrawObject> selectedShapes = new List<clsDrawObject>();
-        private clsDrawObject currentShape;
+        // Danh sách hình Copy
+        List<clsDrawObject> shapesToCopy = new List<clsDrawObject>();
+        // Danh sách hình xóa
+        List<clsDrawObject> shapesToRemove = new List<clsDrawObject>();
+        private clsDrawObject currentShape, newShape;
         private Point lastPoint;
         Point p1, p2;
 
@@ -830,6 +835,52 @@ namespace PhanMemPaint
                 Point point = set_point(pbMain, e.Location);
                 Fill(bm, point.X, point.Y, myColor);
             }
+            if (bSelect == true)
+            {
+                foreach (var shape in lstObject)
+                {
+                    if (shape.Contains(e.Location))
+                    {
+                        if (Control.ModifierKeys == Keys.Control)
+                        {
+                            isCtrlKeyPressed = true;
+                            if (selectedShapes.Contains(shape))
+                            {
+                                selectedShapes.Remove(shape);
+                            }
+                            else selectedShapes.Add(shape);
+                        }
+                        if (isCtrlKeyPressed == false)
+                        {
+                            selectedShapes.Clear();
+                            selectedShapes.Add(shape);
+                        }
+                        break;
+                    }
+                    else if (e.Button == MouseButtons.Left)
+                    {
+                        selectedShapes.Clear();
+                        isCtrlKeyPressed = false;
+                    }
+                }
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (shapesToCopy.Any() == true)
+                        pasteToolStripMenuItem.Enabled = true;
+                    else pasteToolStripMenuItem.Enabled = false;
+                    if (selectedShapes.Any() == true)
+                    {
+                        copyToolStripMenuItem.Enabled = true;
+                        deleteToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        copyToolStripMenuItem.Enabled = false;
+                        deleteToolStripMenuItem.Enabled = false;
+                    }
+                    contextMenuStrip1.Show(this, e.Location); ;
+                }
+            }
         }
         private void pbMain_Paint(object sender, PaintEventArgs e)
         {
@@ -886,33 +937,6 @@ namespace PhanMemPaint
             {
                 foreach (var shape in lstObject)
                 {
-                    if (shape.Contains(e.Location))
-                    {
-                        if (e.Button == MouseButtons.Right)
-                        {
-                            contextMenuStrip1.Show(this, e.Location);
-                        }
-                        if (Control.ModifierKeys == Keys.Control)
-                        {
-                            isCtrlKeyPressed = true;
-                            if (selectedShapes.Contains(shape))
-                            {
-                                selectedShapes.Remove(shape);
-                            }
-                            else selectedShapes.Add(shape);
-                        }
-                        if (isCtrlKeyPressed == false)
-                        {
-                            selectedShapes.Clear();
-                            selectedShapes.Add(shape);
-                        }
-                        break;
-                    }
-                    else
-                    {
-                        selectedShapes.Clear();
-                        isCtrlKeyPressed = false;
-                    }
                     if (shape is clsLine)
                     {
                         // tính toán điểm đầu và cuối của đường thẳng
@@ -1108,22 +1132,65 @@ namespace PhanMemPaint
         }
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            Point mousePos = pbMain.PointToClient(Control.MousePosition);
             // Xử lý sự kiện khi người dùng chọn một mục trong ContextMenuStrip
             switch (e.ClickedItem.Text)
             {
                 case "Delete":
                     {
-                        Point mousePos = pbMain.PointToClient(Control.MousePosition);
-                        var shapesToRemove = new List<clsDrawObject>();
                         foreach (var shape in lstObject)
                         {
-                            selectedShapes.Remove(shape);
-                            shapesToRemove.Add(shape);
+                            if (selectedShapes.Contains(shape))
+                            {
+                                selectedShapes.Remove(shape);
+                                shapesToRemove.Add(shape);
+                            }
                         }
                         foreach (var shape in shapesToRemove)
                         {
                             lstObject.Remove(shape);
                         }
+                        shapesToRemove.Clear();
+                        pbMain.Refresh();
+                    }
+                    break;
+                case "Copy":
+                    {
+                        foreach (var shape in lstObject)
+                        {
+                            if (selectedShapes.Contains(shape))
+                            {
+                                shapesToCopy.Add(shape);
+                            }
+                        }
+                    }
+                    break;
+                case "Paste":
+                    {
+                        foreach (var shape in shapesToCopy)
+                        {
+                            if (shape is clsLine)
+                                newShape = new clsLine { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color, PenWidth = shape.PenWidth };
+                            if (shape is clsEllipse)
+                                newShape = new clsEllipse { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color, PenWidth = shape.PenWidth };
+                            if (shape is clsFilledEllipse)
+                                newShape = new clsFilledEllipse { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color };
+                            if (shape is clsRect)
+                                newShape = new clsRect { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color, PenWidth = shape.PenWidth };
+                            if (shape is clsFilledRect)
+                                newShape = new clsFilledRect { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color };
+                            if (shape is clsCircle)
+                                newShape = new clsCircle { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color, PenWidth = shape.PenWidth };
+                            if (shape is clsFilledCircle)
+                                newShape = new clsFilledCircle { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color };
+                            if (shape is clsPolygon)
+                                newShape = new clsPolygon { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color, PenWidth = shape.PenWidth };
+                            if (shape is clsFilledPolygon)
+                                newShape = new clsFilledPolygon { p1 = shape.p1, p2 = shape.p2, Size = shape.Size, Color = shape.Color };
+                            newShape.Move(newShape.p1.X, newShape.p1.Y);
+                            lstObject.Add(newShape);
+                        }
+                        shapesToCopy.Clear();
                         pbMain.Refresh();
                     }
                     break;
