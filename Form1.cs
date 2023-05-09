@@ -646,6 +646,16 @@ namespace PhanMemPaint
             btnSelect.BackColor = Color.Pink;
             btnColor.BackColor = Color.Pink;
         }
+        private void btnTrash_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn xóa tất cả?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                lstObject.Clear();
+                gp.Clear(Color.White);
+                pbMain.Refresh();
+            }
+            else return;
+        }
         private void btnColor_Click(object sender, EventArgs e)
         {
             btnColor.BackColor = Color.LightCoral;
@@ -692,6 +702,15 @@ namespace PhanMemPaint
         private void btnColor_MouseLeave(object sender, EventArgs e)
         {
             btnColor.FlatAppearance.BorderColor = Color.White;
+        }
+        private void btnTrash_MouseHover(object sender, EventArgs e)
+        {
+            t1.Show("Delete all", btnTrash);
+            btnTrash.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+        }
+        private void btnTrash_MouseLeave(object sender, EventArgs e)
+        {
+            btnTrash.FlatAppearance.BorderColor = Color.White;
         }
         private void btnLine_MouseHover(object sender, EventArgs e)
         {
@@ -990,11 +1009,9 @@ namespace PhanMemPaint
                 if (bFilledCircle == true)
                     currentShape = new clsFilledCircle { Color = myColor, p1 = e.Location };
                 if (bPolygon == true)
-                {
                     currentShape = new clsPolygon { Color = myColor, PenWidth = penWidth, p1 = e.Location, numSides = numSides };
-                }
                 if (bFilledPolygon == true)
-                    currentShape = new clsFilledPolygon { Color = myColor, p1 = e.Location };
+                    currentShape = new clsFilledPolygon { Color = myColor, p1 = e.Location, numSides = numSides };
                 lstObject.Add(currentShape);
             }
         }
@@ -1089,7 +1106,29 @@ namespace PhanMemPaint
                 }
             }
         }
-
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            // Xử lý sự kiện khi người dùng chọn một mục trong ContextMenuStrip
+            switch (e.ClickedItem.Text)
+            {
+                case "Delete":
+                    {
+                        Point mousePos = pbMain.PointToClient(Control.MousePosition);
+                        var shapesToRemove = new List<clsDrawObject>();
+                        foreach (var shape in lstObject)
+                        {
+                            selectedShapes.Remove(shape);
+                            shapesToRemove.Add(shape);
+                        }
+                        foreach (var shape in shapesToRemove)
+                        {
+                            lstObject.Remove(shape);
+                        }
+                        pbMain.Refresh();
+                    }
+                    break;
+            }
+        }
     };
     public abstract class clsDrawObject
     {
@@ -1308,7 +1347,6 @@ namespace PhanMemPaint
 
             return rect.Contains(point);
         }
-
     };
     public class clsFilledPolygon : clsDrawObject
     {
@@ -1355,6 +1393,5 @@ namespace PhanMemPaint
 
             return rect.Contains(point);
         }
-
     };
 }
