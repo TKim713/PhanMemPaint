@@ -121,8 +121,11 @@
   <data name="MouseCursorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MouseCursorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FilledEllipseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FilledEllipseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FillIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FillIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ColorPalletteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ColorPalletteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EraserIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EraserIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,9 +151,6 @@
   <data name="LineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LineIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ColorPalletteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ColorPalletteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="FilledCircleIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FilledCircleIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,7 +160,10 @@
   <data name="FilledPolygonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FilledPolygonIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FillIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FillIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FilledEllipseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FilledEllipseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TrashCanIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TrashCanIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

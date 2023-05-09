@@ -58,6 +58,7 @@ namespace PhanMemPaint
             colorDialog1 = new ColorDialog();
             contextMenuStrip1 = new ContextMenuStrip(components);
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            btnTrash = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picColor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nupEraserWidth).BeginInit();
@@ -71,6 +72,7 @@ namespace PhanMemPaint
             // panel1
             // 
             panel1.BackColor = Color.Pink;
+            panel1.Controls.Add(btnTrash);
             panel1.Controls.Add(picColor);
             panel1.Controls.Add(btnFill);
             panel1.Controls.Add(nupEraserWidth);
@@ -427,13 +429,30 @@ namespace PhanMemPaint
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 48);
+            contextMenuStrip1.Size = new Size(108, 26);
+            contextMenuStrip1.ItemClicked += contextMenuStrip1_ItemClicked;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(180, 22);
+            deleteToolStripMenuItem.Size = new Size(107, 22);
             deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // btnTrash
+            // 
+            btnTrash.BackgroundImage = Properties.Resources.TrashCanIcon;
+            btnTrash.BackgroundImageLayout = ImageLayout.Stretch;
+            btnTrash.FlatAppearance.BorderSize = 0;
+            btnTrash.FlatAppearance.MouseOverBackColor = Color.LightCoral;
+            btnTrash.FlatStyle = FlatStyle.Flat;
+            btnTrash.Location = new Point(105, 391);
+            btnTrash.Name = "btnTrash";
+            btnTrash.Size = new Size(30, 30);
+            btnTrash.TabIndex = 15;
+            btnTrash.UseVisualStyleBackColor = false;
+            btnTrash.Click += btnTrash_Click;
+            btnTrash.MouseLeave += btnTrash_MouseLeave;
+            btnTrash.MouseHover += btnTrash_MouseHover;
             // 
             // Form1
             // 
@@ -488,5 +507,6 @@ namespace PhanMemPaint
         private Label label3;
         private Button btnFill;
         private PictureBox picColor;
+        private Button btnTrash;
     }
 }
