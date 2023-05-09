@@ -1209,6 +1209,14 @@ namespace PhanMemPaint
                         pbMain.Refresh();
                     }
                     break;
+                case "Select All":
+                    {
+                        foreach (var shape in lstObject)
+                        {
+                            selectedShapes.Add(shape);
+                        }
+                    }
+                    break;
             }
         }
     };
