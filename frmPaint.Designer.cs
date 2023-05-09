@@ -448,37 +448,37 @@ namespace PhanMemPaint
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { copyToolStripMenuItem, pasteToolStripMenuItem, deleteToolStripMenuItem, selectAllToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 114);
+            contextMenuStrip1.Size = new Size(123, 92);
             contextMenuStrip1.ItemClicked += contextMenuStrip1_ItemClicked;
             // 
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Enabled = false;
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(180, 22);
+            copyToolStripMenuItem.Size = new Size(122, 22);
             copyToolStripMenuItem.Text = "Copy";
             // 
             // pasteToolStripMenuItem
             // 
             pasteToolStripMenuItem.Enabled = false;
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            pasteToolStripMenuItem.Size = new Size(180, 22);
+            pasteToolStripMenuItem.Size = new Size(122, 22);
             pasteToolStripMenuItem.Text = "Paste";
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Enabled = false;
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(180, 22);
+            deleteToolStripMenuItem.Size = new Size(122, 22);
             deleteToolStripMenuItem.Text = "Delete";
             // 
             // selectAllToolStripMenuItem
             // 
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            selectAllToolStripMenuItem.Size = new Size(180, 22);
+            selectAllToolStripMenuItem.Size = new Size(122, 22);
             selectAllToolStripMenuItem.Text = "Select All";
             // 
-            // Form1
+            // frmPaint
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -486,8 +486,8 @@ namespace PhanMemPaint
             ClientSize = new Size(756, 459);
             Controls.Add(pbMain);
             Controls.Add(panel1);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "frmPaint";
+            Text = "Paint";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picColor).EndInit();
