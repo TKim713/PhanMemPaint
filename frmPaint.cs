@@ -824,11 +824,10 @@ namespace PhanMemPaint
                     {
                         if (shape.Contains(e.Location))
                         {
-                            Bitmap bmp = new Bitmap(pbMain.Width, pbMain.Height);
-                            shape.Fill(bmp, myColor);
+                            shape.Fill(bm, myColor);
 
                             // Hiển thị bitmap lên PictureBox
-                            pbMain.Image = bmp;
+                            pbMain.Image = bm;
                         }
                     }
                 }
