@@ -12,7 +12,7 @@ using System.Net;
 
 namespace PhanMemPaint
 {
-    public partial class Form1 : Form
+    public partial class frmPaint : Form
     {
         ToolTip t1 = new ToolTip();
         Graphics gp;
@@ -59,7 +59,7 @@ namespace PhanMemPaint
         private int handleSize = 10;
         private Point resizeHandleStartPoint;
 
-        public Form1()
+        public frmPaint()
         {
             InitializeComponent();
             bm = new Bitmap(pbMain.Width, pbMain.Height);

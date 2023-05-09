@@ -1,6 +1,6 @@
 namespace PhanMemPaint
 {
-    partial class Form1
+    partial class frmPaint
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@ namespace PhanMemPaint
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPaint));
             panel1 = new Panel();
             btnTrash = new Button();
             picColor = new PictureBox();
